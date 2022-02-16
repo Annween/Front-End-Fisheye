@@ -1,19 +1,19 @@
 //Mettre le code JavaScript lié à la page photographer.html
 const getPhotographer = async () => { //get each photographer identify by their id
-    const {photographers} = await (
+
+    //je récupère l'id dans l'URL
+    const id = window.location.search.split('id=')[1];
+
+    // je récupère mes données Json
+    const photographerData = await (
         fetch('./data/photographers.json')
             .then((response) => response.json())
     );
 
-    const id = window.location.search.split('id=')[1];//search get url params & split get path of the searched element
-    console.log(id);
-    //const photographer =  photographers.filter(el => el.id === id);
-    //return console.log(photographer); // cannot destructure property photographer
+    //je filtre
+    return photographerData.photographers.filter((photographer) => photographer.id == id)[0];
 
-    return  photographers.filter(function (photographer) { // pas d'erreur mais ne retourne pas le HTML de la factory
-            return photographer.id === id;
-        }
-    )
+
 }
 
 
@@ -32,8 +32,9 @@ async function displayData(photographer) { //display data dynamically for each p
 
 async function init() {
     // Récupère les datas des photographes
-    const {photographer} = await getPhotographer();
-    await displayData(photographer);
+
+    // const ???? = await getPhotographer();
+    // await displayData(????);
 };
 
 init();

@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const  { id, name, city, country, tagline, price, portrait } = data || {};
+    const  { id, name, city, country, tagline, price, portrait } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
@@ -30,15 +30,14 @@ function photographerFactory(data) {
 
     function getProfilePage()
     {
-           const photograph_header = document.createElement('div');
-            photograph_header.setAttribute("class", "photographer-header");
-            const nomPrenom = document.createElement("h1");
-            nomPrenom.textContent = name;
-            return (photograph_header);
-
+        const photograph_header = document.createElement('div');
+        photograph_header.setAttribute("class", "photographer-header");
+        const nomPrenom = document.createElement("h1");
+        nomPrenom.textContent = name;
+        return (photograph_header);
 
     }
 
-    return { id, getUserCardDOM, getProfilePage }
+    return { getUserCardDOM, getProfilePage }
 
 }

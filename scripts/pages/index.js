@@ -22,11 +22,10 @@ async function displayData(photographers) {
 };
 
 
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        console.log(photographers);
-         await displayData(photographers);
-    };
+async function init() {
+    // Récupère les datas des photographes
+    const { photographers } = await getPhotographers();
+    await displayData(photographers);
+};
 
-    init();
+init();
