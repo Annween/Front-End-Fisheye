@@ -1,3 +1,8 @@
+#main
+{
+    margin: 0 100px;
+}
+
 #contact_modal {
     display: none;
 }
@@ -5,8 +10,30 @@
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
+
+.photograph-header .names
+{
+    color: #D3573C;
+}
+
+.photograph-header .location span
+{
+    color: #901C1C;
+    font-size: 23px;
+}
+
+
+
+.photograph-header img
+{
+    border-radius: 50%;
+    max-width: 200px;
+}
+
 
 .contact_button {
     font-size: 20px;
@@ -21,6 +48,20 @@
     cursor: pointer;
 }
 
+#contact_modal
+{
+    display: none;
+    position: fixed;
+    padding-top: 100px;
+    left: 0;
+    right:0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 9999;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -31,6 +72,7 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+
 }
 
 .modal header {
@@ -47,6 +89,7 @@
     font-weight: normal;
     text-align: center;
 }
+
 
 form {
     display: flex;
@@ -74,3 +117,80 @@ form input {
     border: none;
     border-radius: 5px;
 }
+form #message
+{
+    height: 244px;
+}
+
+.sort
+{
+    margin-top: 25px;
+}
+
+.sort .orderBy
+{
+    background-color: #901C1C;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+}
+
+.sort .orderBy>option
+{
+
+    border-bottom: 2px solid white;
+}
+
+.gallery
+{
+    display: flex;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.gallery .album
+{
+    width: 20%;
+}
+
+.gallery .album img
+{
+    object-fit: cover;
+    width: 255px;
+    height: 255px;
+}
+
+.gallery .album .caption
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #901C1C;
+}
+
+
+.price
+{
+    margin: 0 100px;
+    width: 13%;
+    padding: 10px;
+    border-radius: 3px 3px 0 0;
+    background-color: #D3573C;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price span
+{
+    font-weight: bold;
+}
+
+
+
+

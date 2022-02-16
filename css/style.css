@@ -31,6 +31,12 @@ h1 {
     margin-top: 100px;
 }
 
+.photographer_section a {
+
+    text-decoration: none;
+
+}
+
 .photographer_section article {
     justify-self: center;
     display: flex;
@@ -46,5 +52,20 @@ h1 {
 
 .photographer_section article img {
     height: 200px;
+    object-fit: cover;
     width: 200px;
+    border-radius: 50%;
 }
+
+.photographer_section article span {
+ color: #901C1C;
+}
+.photographer_section article p {
+    color: black;
+}
+
+.photographer_section article .prix {
+    color: lightgray;
+}
+
+
