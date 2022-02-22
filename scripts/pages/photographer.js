@@ -11,14 +11,17 @@ const getPhotographer = async () => { //get each photographer identify by their 
     );
 
     //je filtre
-    return photographerData.photographers.filter((photographer) => photographer.id == id)[0];
+    //photographerData.photographers.filter((photographer) => photographer.id == id)[0];
 
+    photographerData.photographers = photographerData.photographers.filter((photographer) => photographer.id == id)[0];
+    photographerData.media = photographerData.media.filter((media) => media.photographerId == id)
+
+    return photographerData;
 
 }
 
 
-
-async function displayData(photographer) { //display data dynamically for each photographer
+async function displayPhotographerData(photographer) { //display data dynamically for each photographer
 
     const photographersSection = document.querySelector("#main");
 
@@ -29,12 +32,24 @@ async function displayData(photographer) { //display data dynamically for each p
 
 };
 
+async function displayMediaData(media) { //display media data dynamically for each photographer
+
+    const photographersSection = document.querySelector("#main");
+
+    const profileModel = photographerFactory(media);
+    const profiles = profileModel.getMediaPage();
+    photographersSection.appendChild(profiles);
+
+
+};
+
 
 async function init() {
     // Récupère les datas des photographes
 
-    // const ???? = await getPhotographer();
-    // await displayData(????);
+     const {photographers, media} = await getPhotographer();
+     await displayPhotographerData(photographers);
+     await displayMediaData(media);
 };
 
 init();

@@ -7,7 +7,7 @@
     display: none;
 }
 
-.photograph-header {
+ .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     display: flex;
@@ -17,6 +17,8 @@
 
 .photograph-header .names
 {
+    margin-bottom: 15px;
+    font-size: 40px;
     color: #D3573C;
 }
 
@@ -30,9 +32,31 @@
 
 .photograph-header img
 {
+    height: 200px;
+    object-fit: cover;
+    width: 200px;
     border-radius: 50%;
-    max-width: 200px;
 }
+
+.price
+{
+    margin: 0 100px;
+    width: 13%;
+    padding: 10px;
+    border-radius: 3px 3px 0 0;
+    background-color: #D3573C;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price span
+{
+    font-weight: bold;
+}
+
 
 
 .contact_button {
@@ -172,24 +196,6 @@ form #message
 }
 
 
-.price
-{
-    margin: 0 100px;
-    width: 13%;
-    padding: 10px;
-    border-radius: 3px 3px 0 0;
-    background-color: #D3573C;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-}
-
-.price span
-{
-    font-weight: bold;
-}
 
 
 
