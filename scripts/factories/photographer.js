@@ -32,6 +32,8 @@ function photographerFactory(data) {
 
     function getProfilePage()
     {
+        const picture = `samplePhotos/${image}/`;
+
         const section = document.createElement("section");
         const photograph_header = document.createElement('div');
         photograph_header.setAttribute("class", "photograph-header");
@@ -93,14 +95,18 @@ function photographerFactory(data) {
 
     function getMediaPage()
     {
+
+
         const section = document.createElement("section");
         section.setAttribute('class', 'gallery');
+
+
 
         const album = document.createElement("div");
         album.setAttribute('class', 'album');
         const img = document.createElement('img');
         img.setAttribute('class', 'lightbox');
-        img.setAttribute('src', `samplePhotos/${image}`);
+        img.setAttribute('src', `/samplePhotos//${image}`);
         const caption = document.createElement('div');
         caption.setAttribute('class', 'caption');
         const albumTitle = document.createElement('h4');

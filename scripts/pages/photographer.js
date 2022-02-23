@@ -1,81 +1,97 @@
 //Mettre le code JavaScript lié à la page photographer.html
-const getPhotographer = async () => { //get each photographer identify by their id
 
-    //je récupère l'id dans l'URL
-    const id = window.location.search.split('id=')[1];
+     async function getPhotographer()  { //get each photographer identify by their id
 
-    // je récupère mes données Json
-    const photographerData = await (
-        fetch('./data/photographers.json')
-            .then((response) => response.json())
-    );
+        //je récupère l'id dans l'URL
+        const id = window.location.search.split('id=')[1];
 
-    //je filtre
-    //photographerData.photographers.filter((photographer) => photographer.id == id)[0];
+        // je récupère mes données Json
+        const photographerData = await (
+            fetch('./data/photographers.json')
+                .then((response) => response.json())
+        );
 
-    photographerData.photographers = photographerData.photographers.filter((photographer) => photographer.id == id)[0];
-    photographerData.media = photographerData.media.filter((media) => media.photographerId == id)
+        //je filtre
+        //photographerData.photographers.filter((photographer) => photographer.id == id)[0];
 
-    return photographerData;
-
-}
+        photographerData.photographers = photographerData.photographers.filter((photographer) => photographer.id == id)[0];
+        photographerData.media = photographerData.media.filter((media) => media.photographerId == id);
 
 
-async function displayPhotographerData(photographer) { //display data dynamically for each photographer
 
-    const photographersSection = document.querySelector("#main");
+
+        return photographerData;
+
+    }
+
+
+     async function displayPhotographerData(photographer) { //display data dynamically for each photographer
+
+        const photographersSection = document.querySelector("#main");
 
         const profileModel = photographerFactory(photographer);
         const profiles = profileModel.getProfilePage();
         photographersSection.appendChild(profiles);
 
 
-};
+    };
 
-async function displayMediaData(media) { //display media data dynamically for each photographer
+     async function displayMediaData(media) { //display media data dynamically for each photographer
 
-    const photographersSection = document.querySelector("#main");
+        const photographersSection = document.querySelector("#main");
 
-    const profileModel = photographerFactory(media);
-    const profiles = profileModel.getMediaPage();
-    photographersSection.appendChild(profiles);
-
-
-};
+        const profileModel = photographerFactory(media);
+        const profiles = profileModel.getMediaPage();
+        photographersSection.appendChild(profiles);
 
 
-async function init() {
-    // Récupère les datas des photographes
+    };
 
-     const {photographers, media} = await getPhotographer();
-     await displayPhotographerData(photographers);
-     await displayMediaData(media);
-};
+
+
+     async function init() {
+        // Récupère les datas des photographes
+        const {photographers, media} = await getPhotographer();
+        await displayPhotographerData(photographers);
+        await displayMediaData(media);
+    };
+
+
+     function sortBy()
+     {
+
+     }
+
+
+
+    /*function  incrementLikes() {
+        let counter = 0;
+        const hearts = document.querySelectorAll('i.fa-heart');
+        console.log(hearts);
+        hearts.addEventListener('click', function (e) {
+            e.preventDefault();
+            counter++;
+            const compteurs = document.querySelectorAll('.compteur');
+
+
+            for (const compteur of compteurs) {
+
+                compteur.innerHTML = counter;
+
+            }
+
+        });
+
+    }*/
+
+
 
 init();
-//partir sur une classe avec toutes les fonctions (PhotographBuilder)
-
-let counter = 0;
-function incrementLikes()
-{
-    const hearts = document.querySelectorAll('i.fa-heart');
-    console.log(hearts);
-    hearts.addEventListener('click', function (e)
-    {
-        e.preventDefault();
-        counter++;
-     const  compteurs = document.querySelectorAll('.compteur');
 
 
-        for (const compteur of compteurs) {
 
-            compteur.innerHTML = counter;
 
-        }
 
-    });
-
-}
 
 
 
