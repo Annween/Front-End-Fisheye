@@ -7,7 +7,6 @@ const getPhotographers = async () => {
     return {photographers}
 };
 
-
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
@@ -20,7 +19,6 @@ async function displayData(photographers) {
     });
 
 };
-
 
 async function init() {
     // Récupère les datas des photographes

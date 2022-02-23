@@ -1,88 +1,89 @@
-//Mettre le code JavaScript lié à la page photographer.html
+const photographersSection = document.querySelector("#main");
 
-     async function getPhotographer()  { //get each photographer identify by their id
+//get each photographer identify by their id
+async function getPhotographer()  { 
 
-        //je récupère l'id dans l'URL
-        const id = window.location.search.split('id=')[1];
+    //je récupère l'id dans l'URL
+    const id = window.location.search.split('id=')[1];
 
-        // je récupère mes données Json
-        const photographerData = await (
-            fetch('./data/photographers.json')
-                .then((response) => response.json())
-        );
+    // je récupère mes données Json
+    const photographerData = await (
+        fetch('./data/photographers.json')
+            .then((response) => response.json())
+    );
 
-        //je filtre
-        //photographerData.photographers.filter((photographer) => photographer.id == id)[0];
+    photographerData.photographers = photographerData.photographers.filter((photographer) => photographer.id == id)[0];
+    photographerData.media = photographerData.media.filter((media) => media.photographerId == id);
 
-        photographerData.photographers = photographerData.photographers.filter((photographer) => photographer.id == id)[0];
-        photographerData.media = photographerData.media.filter((media) => media.photographerId == id);
+    return photographerData;
+}
 
+//display data dynamically for each photographer
+async function displayPhotographerData(photographer) { 
 
+    const profileModel = photographerFactory(photographer);
+    const profiles = profileModel.getProfilePage();
+    photographersSection.appendChild(profiles);
 
+};
 
-        return photographerData;
+//display media data dynamically for each photographer
+async function displayMediaData(media, orderBy) {
 
-    }
+    const profileModel = photographerFactory(media);
+    const profiles = profileModel.getMediaPage();
+    photographersSection.appendChild(profiles);
 
+};
 
-     async function displayPhotographerData(photographer) { //display data dynamically for each photographer
+// sort media switch criteria
+function sortMedia(orderBy){
 
-        const photographersSection = document.querySelector("#main");
+    //si orderBy = date
+        // je tri le tableau media par date
 
-        const profileModel = photographerFactory(photographer);
-        const profiles = profileModel.getProfilePage();
-        photographersSection.appendChild(profiles);
+    // si orderBy = ......
 
+    displayMediaData(media);
 
-    };
+}
 
-     async function displayMediaData(media) { //display media data dynamically for each photographer
+// evenement qui appelle sortMedia
 
-        const photographersSection = document.querySelector("#main");
+async function init() {
 
-        const profileModel = photographerFactory(media);
-        const profiles = profileModel.getMediaPage();
-        photographersSection.appendChild(profiles);
+    // Récupère les datas des photographes
+    const {photographers, media} = await getPhotographer();
+    await displayPhotographerData(photographers);
+    await displayMediaData(media);
+};
 
+function sortBy()
+{
 
-    };
-
-
-
-     async function init() {
-        // Récupère les datas des photographes
-        const {photographers, media} = await getPhotographer();
-        await displayPhotographerData(photographers);
-        await displayMediaData(media);
-    };
-
-
-     function sortBy()
-     {
-
-     }
-
-
-
-    /*function  incrementLikes() {
-        let counter = 0;
-        const hearts = document.querySelectorAll('i.fa-heart');
-        console.log(hearts);
-        hearts.addEventListener('click', function (e) {
-            e.preventDefault();
-            counter++;
-            const compteurs = document.querySelectorAll('.compteur');
+}
 
 
-            for (const compteur of compteurs) {
 
-                compteur.innerHTML = counter;
+/*function  incrementLikes() {
+    let counter = 0;
+    const hearts = document.querySelectorAll('i.fa-heart');
+    console.log(hearts);
+    hearts.addEventListener('click', function (e) {
+        e.preventDefault();
+        counter++;
+        const compteurs = document.querySelectorAll('.compteur');
 
-            }
 
-        });
+        for (const compteur of compteurs) {
 
-    }*/
+            compteur.innerHTML = counter;
+
+        }
+
+    });
+
+}*/
 
 
 

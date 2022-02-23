@@ -3,7 +3,9 @@ function photographerFactory(data) {
 
     const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM(qualifiedName) {
+    // a comment
+    function getUserCardDOM() {
+
         const ahref = document.createElement('a');
         ahref.setAttribute('class', 'link')
         ahref.setAttribute('href', 'photographer.html?id='+ id);
@@ -26,14 +28,12 @@ function photographerFactory(data) {
         article.appendChild(bio);
         article.appendChild(prix);
         return (ahref);
+
     }
 
-
-
+    // a comment
     function getProfilePage()
     {
-
-
         const section = document.createElement("section");
         const photograph_header = document.createElement('div');
         photograph_header.setAttribute("class", "photograph-header");
@@ -72,8 +72,6 @@ function photographerFactory(data) {
         const priceDay = document.createElement('span');
         priceDay.textContent = price + "€ /jour";
 
-
-
         section.appendChild(photograph_header);
         photograph_header.appendChild(mainInfos);
         mainInfos.appendChild(nomPrenom);
@@ -92,14 +90,12 @@ function photographerFactory(data) {
 
     }
 
-
+    // a comment
     function getMediaPage()
     {
 
         const section = document.createElement("section");
         section.setAttribute('class', 'gallery');
-
-
 
         const album = document.createElement("div");
         album.setAttribute('class', 'album');
@@ -119,8 +115,6 @@ function photographerFactory(data) {
         heart.setAttribute('aria-label', 'likes');
         heart.setAttribute('class', 'fas fa-heart');
 
-
-
         section.appendChild(album);
         album.appendChild(img);
         album.appendChild(caption);
@@ -130,7 +124,6 @@ function photographerFactory(data) {
         like.appendChild(heart);
 
         return(section);
-
 
     }
 
