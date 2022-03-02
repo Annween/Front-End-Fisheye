@@ -3,7 +3,7 @@ function photographerFactory(data) {
 
     const picture = `assets/photographers/${portrait}`;
 
-    // a comment
+    // affiche les infos de tous les photographes
     function getUserCardDOM() {
 
         const ahref = document.createElement('a');
@@ -31,7 +31,7 @@ function photographerFactory(data) {
 
     }
 
-    // a comment
+    // affiche les infos du photographe
     function getProfilePage() {
         const section = document.createElement("section");
         const photograph_header = document.createElement('div');
@@ -69,7 +69,7 @@ function photographerFactory(data) {
         heart.setAttribute('aria-label', 'likes');
         heart.setAttribute('class', 'fas fa-heart');
         const priceDay = document.createElement('span');
-        priceDay.textContent = price + "€ /jour";
+        priceDay.textContent = price + "€ /jour"; 
 
 
         section.appendChild(photograph_header);
@@ -80,7 +80,8 @@ function photographerFactory(data) {
         location.appendChild(bio);
         photograph_header.appendChild(contact_button);
         photograph_header.appendChild(profileImg);
-        section.appendChild(likesSpan);
+
+        section.appendChild(price_likes);
         price_likes.appendChild(likesSpan);
         likesSpan.appendChild(heart);
         price_likes.appendChild(priceDay);
@@ -90,13 +91,15 @@ function photographerFactory(data) {
 
     }
 
-    // a comment
+    // affiche les médias du photographe
     function getMediaPage() {
+
         const jpg = `assets/images/${image}`;
         const mp4 = `assets/images/${video}`;
 
         //const section = document.createElement("section");
         //section.setAttribute('class', 'gallery');
+    
         const album = document.createElement("div");
         album.setAttribute('class', 'album');
 
@@ -104,7 +107,7 @@ function photographerFactory(data) {
         const caption = document.createElement('div');
         caption.setAttribute('class', 'caption');
         const albumTitle = document.createElement('h4');
-        if(title.length> 20)
+        if(title.length > 20)
         {
             albumTitle.textContent =  title.substring(0, 24) + "...";
         }else
@@ -120,13 +123,14 @@ function photographerFactory(data) {
         const heart = document.createElement('i');
         heart.setAttribute('aria-label', 'likes');
         heart.setAttribute('class', 'fas fa-heart');
-
-
-
+       
+         
+        //si le fichier contient l'extension JPG on l'affiche avec <img>
         if (jpg.split('.').pop() === "jpg") {
             const img = document.createElement('img');
             img.setAttribute('class', 'lightbox');
-            img.setAttribute('src', `assets/images/${image}`);
+            img.setAttribute('src', jpg);
+            img.setAttribute('onclick' , 'openModal()');
             img.setAttribute('alt' , title);
 
 
@@ -139,11 +143,12 @@ function photographerFactory(data) {
 
         }
 
+        //si le fichier contient l'extension JPG on l'affiche avec <video>
         if (mp4.split('.').pop() === "mp4") {
             const videoPlayer = document.createElement('video');
             //videoPlayer.setAttribute('class', 'lightbox');
             const source = document.createElement('source');
-            source.setAttribute('src', `assets/images/${video}`);
+            source.setAttribute('src', mp4);
             source.setAttribute('type', 'video/mp4');
             source.setAttribute('class', 'videoImg')
 
@@ -156,15 +161,6 @@ function photographerFactory(data) {
             like.appendChild(heart);
 
         }
-
-       const divModal = document.createElement('div');
-        divModal.setAttribute('id', 'myModal');
-        divModal.setAttribute('class', 'modal');
-        const closeCursor = document.createElement('span');
-        closeCursor.setAttribute('class', 'close-cursor');
-        const divModalContent= document.createElement('div');
-        divModalContent.setAttribute('class', 'modalContent');
-        
 
 
         return (album);

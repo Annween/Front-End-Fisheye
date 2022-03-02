@@ -51,8 +51,23 @@ async function init() {
 class photographerBuilder
 {
     // sort media switch criteria
-   //public sortMedia(orderBy){
+    sortMedia(){
 
+    const optionValue = document.getElementById("sortBy");
+
+    if(optionValue.value == "titre")
+    {
+        const array = displayMediaData();
+
+        return array.sort();
+    }
+    
+    if(optionValue.value == "date")
+    {
+        const array = displayMediaData();
+
+        return array.sort((a, b) => b.date - a.date);
+    }
 
     //si orderBy = date
     // je tri le tableau media par date
@@ -61,7 +76,7 @@ class photographerBuilder
 
     //displayMediaData(media);
 
-//}
+    }
 
 
 
@@ -88,11 +103,19 @@ class photographerBuilder
 
    //}
 
+
+
 }
 
-//document.getElementById("sort").addEventListener("onchange", function() {
-//    this.sortMedia();
-//});
+const select = document.getElementById("sortBy");
+
+select.addEventListener('onchange', function () {
+    const media = new photographerBuilder;
+    media.sortMedia();
+});
+
+
+
 
 
 init();

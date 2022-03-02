@@ -58,6 +58,11 @@
 }
 
 
+#sort
+{
+    margin-top: 20px;
+}
+
 
 .contact_button {
     font-size: 20px;
@@ -241,7 +246,6 @@ form #message
     align-items: center;
     color: #901C1C;
 }
-
 
 
 

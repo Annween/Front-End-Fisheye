@@ -17,27 +17,21 @@
 		<header>
 			<img src="assets/images/logo.png" class="logo" alt="logo"/>
 		</header>
-		<!-- DROPDOWN -->
+	
 
 		<!-- MAIN -->
 		<main id="main">
 
-
-
       <section id="photographeInfos"></section>
 			<!-- Dropdown filter -->
-			<div id="sort">
-				<label>Trier par</label>
-				<div class="dropdown" role="button" aria-haspopup="listbox" aria-expanded="true">
-					<button class="dropbtn" role="listbox" aria-activedescendant aria-selected="true">Popularité
-						<i class="fas fa-angle-down"></i>
-					</button>
-					<div class="dropdown-content">
-						<a href="#" role="listbox" aria-activedescendant aria-selected="false">Date</a>
-						<a href="#" role="listbox" aria-activedescendant aria-selected="false">Titre</a>
-					</div>
-				</div>
-			</div>
+
+			<label>Trier par</label>
+			<select id="sortBy">
+				<option value="popularite">Popularité</option>
+				<option value="date">Date</option>
+				<option value="titre">Titre</option>
+			</select>
+
       <section id="photographeMedias"></section>
 
 		</main>
