@@ -9,7 +9,7 @@
 
  .photograph-header {
     background-color: #FAFAFA;
-    height: 300px;
+   padding: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -63,9 +63,8 @@
     font-size: 20px;
     font-weight: bold;
     color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
+    padding: 25px;
+    width: 190px;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
@@ -151,20 +150,7 @@ form #message
     margin-top: 25px;
 }
 
-.sort .orderBy
-{
-    background-color: #901C1C;
-    color: white;
-    font-weight: bold;
-    border: none;
-    padding: 10px;
-}
 
-.sort .orderBy>option
-{
-
-    border-bottom: 2px solid white;
-}
 
 .dropbtn {
     background-color: #901C1C;
@@ -208,28 +194,39 @@ form #message
 
 .dropdown:hover .dropbtn {background-color: #901C1C;}
 
-.gallery
+#photographeMedias
 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
+
+}
+
+#photographeMedias .album
+{
+
+    justify-self: center;
     display: flex;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
+    justify-content: center;
+    flex-direction: column;
 }
 
-.gallery .album
-{
-    width: 20%;
-}
-
-.gallery .album img
+#photographeMedias .album img
 {
     object-fit: cover;
     width: 255px;
     height: 255px;
 }
 
-.gallery .album .caption
+#photographeMedias .album video
+{
+    object-fit: cover;
+    width: 255px;
+    height: 255px;
+}
+
+#photographeMedias .album video .caption
 {
     display: flex;
     justify-content: space-between;
@@ -237,7 +234,13 @@ form #message
     color: #901C1C;
 }
 
-
+#photographeMedias .album .caption
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #901C1C;
+}
 
 
 
