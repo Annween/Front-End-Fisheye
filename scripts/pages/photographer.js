@@ -1,7 +1,8 @@
 //const photographersSection = document.querySelector("#main");
+let mediaArray;
 
 //get each photographer identify by their id
-async function getPhotographer()  { 
+async function getPhotographer() {
 
     //je récupère l'id dans l'URL
     const id = window.location.search.split('id=')[1];
@@ -19,7 +20,7 @@ async function getPhotographer()  {
 }
 
 //display data dynamically for each photographer
-async function displayPhotographerData(photographer) { 
+function displayPhotographerData(photographer) {
 
     const photographersSection = document.getElementById("photographeInfos");
     const profileModel = photographerFactory(photographer);
@@ -29,12 +30,14 @@ async function displayPhotographerData(photographer) {
 };
 
 //display media data dynamically for each photographer
-async function displayMediaData(photographerData) {
+function displayMediaData(photographerData) {
+
     const photographersSection = document.getElementById("photographeMedias");
+    
     photographerData.forEach((media) => {
         const profileModel = photographerFactory(media);
-        const profiles = profileModel.getMediaPage();
-        photographersSection.appendChild(profiles);
+        const medias = profileModel.getMediaPage();
+        photographersSection.appendChild(medias);
     });
 
 };
@@ -42,66 +45,53 @@ async function displayMediaData(photographerData) {
 async function init() {
 
     // Récupère les datas des photographes
-    const {photographers, media} = await getPhotographer();
-    await displayPhotographerData(photographers);
-    await displayMediaData(media);
+    const photographerData = await getPhotographer();
+
+    // je remplis mon tableau de média avec les médias issus du JSON
+    mediaArray = photographerData.media;
+
+    displayPhotographerData(photographerData.photographers);
+    displayMediaData(mediaArray);
+    
 };
 
 
-class photographerBuilder
-{
+class photographerBuilder {
     // sort media switch criteria
-    sortMedia(){
+    sortMedia() {
 
-    const optionValue = document.getElementById("sortBy");
+        const optionValue = document.getElementById("sortBy");
 
-    if(optionValue.value == "titre")
-    {
-        const array = displayMediaData();
+        // if (optionValue.value == "titre") {
+        //     const array = displayMediaData();
 
-        return array.sort();
-    }
-    
-    if(optionValue.value == "date")
-    {
-        const array = displayMediaData();
+        //     return array.sort();
+        // }
 
-        return array.sort((a, b) => b.date - a.date);
-    }
+        if (optionValue.value == "date") {
 
-    //si orderBy = date
-    // je tri le tableau media par date
+            mediaArray = mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+            displayMediaData(mediaArray);
+        }
 
-    // si orderBy = ......
+        //si orderBy = date
+        // je tri le tableau media par date
 
-    //displayMediaData(media);
+        // si orderBy = ......
+
+        //displayMediaData(media);
 
     }
 
+    // ajoute 1 au coeur d'un média
+    // incrementLike(icone){
 
+        // étape 1 : à partir de l'icone, remonter au parent avec une recherche Google : js get parent element
+        // étape 2 : à partir du parent, descendre vers l'enfant ayant la classe que l'on cible (chez nous, compteur) : Google : js get child with class
+        // étape 3 : récupérer la value du span compteur, lui ajouter 1, et le réécrire
 
-// evenement qui appelle sortMedia
+    // }
 
-
-   //public incrementLikes() {
-   //    let counter = 0;
-   //    const hearts = document.querySelectorAll('i.fa-heart');
-   //    console.log(hearts);
-   //    hearts.addEventListener('click', function (e) {
-   //        e.preventDefault();
-   //        counter++;
-   //        const compteurs = document.querySelectorAll('.compteur');
-
-
-   //        for (const compteur of compteurs) {
-
-   //            compteur.innerHTML = counter;
-
-   //        }
-
-   //    });
-
-   //}
 
 
 
@@ -109,14 +99,17 @@ class photographerBuilder
 
 const select = document.getElementById("sortBy");
 
-select.addEventListener('onchange', function () {
-    const media = new photographerBuilder;
-    media.sortMedia();
+const photographBuilder = new photographerBuilder;
+
+// evenement qui detecte le "change" sur le select
+select.addEventListener('change', function () {
+    photographBuilder.sortMedia();
 });
 
+// evenement qui deteche un "click" sur tous les coeurs
 
-
-
+// etape 1 : déclarer l'évènement
+// étape 2 : s'assurer que l'event fonctionne puis lancer la fonction d'increment des likes ( photographUtil.incrementlike(this) )
 
 init();
 
