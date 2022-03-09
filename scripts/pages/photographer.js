@@ -1,6 +1,3 @@
-//const photographersSection = document.querySelector("#main");
-let mediaArray;
-
 //get each photographer identify by their id
 async function getPhotographer() {
 
@@ -33,6 +30,7 @@ function displayPhotographerData(photographer) {
 function displayMediaData(photographerData) {
 
     const photographersSection = document.getElementById("photographeMedias");
+    photographersSection.innerHTML = "";
     
     photographerData.forEach((media) => {
         const profileModel = photographerFactory(media);
@@ -47,27 +45,30 @@ async function init() {
     // Récupère les datas des photographes
     const photographerData = await getPhotographer();
 
-    // je remplis mon tableau de média avec les médias issus du JSON
-    mediaArray = photographerData.media;
+    // création de l'objet utilitaire
+    const photographerUtils = new PhotographerUtils;
 
+    // je remplis mon tableau de média avec les médias issus du JSON
+    let mediaArray = photographerData.media;
+
+    // affichage des parties HTML de la page
     displayPhotographerData(photographerData.photographers);
-    
+    mediaArray = photographerUtils.sortMedia("popularite", mediaArray);
     displayMediaData(mediaArray);
+
+    // evenement qui detecte la demande de tri des médias
+    document.getElementById("dropdown").addEventListener('click', function (e) {
+        mediaArray = photographerUtils.sortMedia(e.target.id, mediaArray);
+        displayMediaData(mediaArray);
+    });
+
+    // à chaque clic sur un coeur...
+    document.querySelectorAll(".incrementLike").forEach(heart => heart.addEventListener('click', function () {
+        photographerUtils.incrementLike(this);
+    }));
     
 };
 
-
-
-
-init();
-
-
-
-
-
-
-
-
-
-
-
+(function() {
+    init();
+})();
