@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const {id, name, city, country, tagline, price, portrait, image, likes, title, video} = data;
+    const { id, name, city, country, tagline, price, portrait, image, likes, title, video } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
@@ -69,7 +69,7 @@ function photographerFactory(data) {
         heart.setAttribute('aria-label', 'likes');
         heart.setAttribute('class', 'fas fa-heart');
         const priceDay = document.createElement('span');
-        priceDay.textContent = price + "€ /jour"; 
+        priceDay.textContent = price + "€ /jour";
 
 
         section.appendChild(photograph_header);
@@ -99,7 +99,7 @@ function photographerFactory(data) {
 
         //const section = document.createElement("section");
         //section.setAttribute('class', 'gallery');
-    
+
         const album = document.createElement("div");
         album.setAttribute('class', 'album');
 
@@ -107,31 +107,30 @@ function photographerFactory(data) {
         const caption = document.createElement('div');
         caption.setAttribute('class', 'caption');
         const albumTitle = document.createElement('h4');
-        if(title.length > 20)
-        {
-            albumTitle.textContent =  title.substring(0, 24) + "...";
-        }else
-        {
+        if (title.length > 20) {
+            albumTitle.textContent = title.substring(0, 24) + "...";
+        } else {
             albumTitle.textContent = title;
         }
 
         const like = document.createElement('p');
         like.setAttribute('class', 'like');
-        like.textContent = likes;
+
         const compteur = document.createElement('span');
         compteur.setAttribute('class', 'compteur');
+        compteur.textContent = likes;
         const heart = document.createElement('i');
         heart.setAttribute('aria-label', 'likes');
         heart.setAttribute('class', 'fas fa-heart');
-       
-         
+
+
         //si le fichier contient l'extension JPG on l'affiche avec <img>
         if (jpg.split('.').pop() === "jpg") {
             const img = document.createElement('img');
             img.setAttribute('class', 'lightbox');
             img.setAttribute('src', jpg);
-            img.setAttribute('onclick' , 'openModal()');
-            img.setAttribute('alt' , title);
+            img.setAttribute('onclick', 'openModal()');
+            img.setAttribute('alt', title);
 
 
             album.appendChild(img);
@@ -166,6 +165,6 @@ function photographerFactory(data) {
         return (album);
     }
 
-    return {getUserCardDOM, getProfilePage, getMediaPage}
+    return { getUserCardDOM, getProfilePage, getMediaPage }
 
 }

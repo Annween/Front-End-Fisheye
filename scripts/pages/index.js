@@ -1,10 +1,9 @@
-
-const getPhotographers = async () => {
-    const {photographers} = await (
+const getPhotographers = async() => {
+    const { photographers } = await (
         fetch('./data/photographers.json')
-            .then((response) => response.json())
+        .then((response) => response.json())
     );
-    return {photographers}
+    return { photographers }
 };
 
 async function displayData(photographers) {

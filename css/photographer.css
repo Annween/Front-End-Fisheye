@@ -1,5 +1,4 @@
-#main
-{
+#main {
     margin: 0 100px;
 }
 
@@ -7,39 +6,33 @@
     display: none;
 }
 
- .photograph-header {
+.photograph-header {
     background-color: #FAFAFA;
-   padding: 60px;
+    padding: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.photograph-header .names
-{
+.photograph-header .names {
     margin-bottom: 15px;
     font-size: 40px;
     color: #D3573C;
 }
 
-.photograph-header .location span
-{
+.photograph-header .location span {
     color: #901C1C;
     font-size: 23px;
 }
 
-
-
-.photograph-header img
-{
+.photograph-header img {
     height: 200px;
     object-fit: cover;
     width: 200px;
     border-radius: 50%;
 }
 
-.price
-{
+.price {
     margin: 0 100px;
     width: 13%;
     padding: 10px;
@@ -52,17 +45,13 @@
     justify-content: space-between;
 }
 
-.price span
-{
+.price span {
     font-weight: bold;
 }
 
-
-#sort
-{
+#sort {
     margin-top: 20px;
 }
-
 
 .contact_button {
     font-size: 20px;
@@ -76,17 +65,16 @@
     cursor: pointer;
 }
 
-#contact_modal
-{
+#contact_modal {
     display: none;
     position: fixed;
     padding-top: 100px;
     left: 0;
-    right:0;
+    right: 0;
     top: 0;
     bottom: 0;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     z-index: 9999;
 }
 
@@ -100,7 +88,6 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
-
 }
 
 .modal header {
@@ -117,7 +104,6 @@
     font-weight: normal;
     text-align: center;
 }
-
 
 form {
     display: flex;
@@ -145,17 +131,14 @@ form input {
     border: none;
     border-radius: 5px;
 }
-form #message
-{
+
+form #message {
     height: 244px;
 }
 
-.sort
-{
+.sort {
     margin-top: 25px;
 }
-
-
 
 .dropbtn {
     background-color: #901C1C;
@@ -168,7 +151,6 @@ form #message
     display: flex;
     justify-content: space-between;
 }
-
 
 .dropdown {
     position: relative;
@@ -184,68 +166,68 @@ form #message
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-content {
+    padding-inline-start: 0px;
+}
+
+.dropdown-content p {
     color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     border-top: 2px solid white;
-    border-bottom: 2px solid white;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
-.dropdown-content a:hover {background-color: #901C1C;}
+.dropdown-content a:hover {
+    background-color: #901C1C;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
-.dropdown:hover .dropbtn {background-color: #901C1C;}
+.dropdown:hover .dropbtn {
+    background-color: #901C1C;
+}
 
-#photographeMedias
-{
+#photographeMedias {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
-
 }
 
-#photographeMedias .album
-{
-
+#photographeMedias .album {
     justify-self: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-#photographeMedias .album img
-{
+#photographeMedias .album img {
     object-fit: cover;
     width: 255px;
     height: 255px;
 }
 
-#photographeMedias .album video
-{
+#photographeMedias .album video {
     object-fit: cover;
     width: 255px;
     height: 255px;
 }
 
-#photographeMedias .album video .caption
-{
+#photographeMedias .album video .caption {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #901C1C;
 }
 
-#photographeMedias .album .caption
-{
+#photographeMedias .album .caption {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #901C1C;
 }
-
-
-

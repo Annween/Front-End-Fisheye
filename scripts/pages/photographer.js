@@ -51,65 +51,13 @@ async function init() {
     mediaArray = photographerData.media;
 
     displayPhotographerData(photographerData.photographers);
+    
     displayMediaData(mediaArray);
     
 };
 
 
-class photographerBuilder {
-    // sort media switch criteria
-    sortMedia() {
 
-        const optionValue = document.getElementById("sortBy");
-
-        // if (optionValue.value == "titre") {
-        //     const array = displayMediaData();
-
-        //     return array.sort();
-        // }
-
-        if (optionValue.value == "date") {
-
-            mediaArray = mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date));
-            displayMediaData(mediaArray);
-        }
-
-        //si orderBy = date
-        // je tri le tableau media par date
-
-        // si orderBy = ......
-
-        //displayMediaData(media);
-
-    }
-
-    // ajoute 1 au coeur d'un média
-    // incrementLike(icone){
-
-        // étape 1 : à partir de l'icone, remonter au parent avec une recherche Google : js get parent element
-        // étape 2 : à partir du parent, descendre vers l'enfant ayant la classe que l'on cible (chez nous, compteur) : Google : js get child with class
-        // étape 3 : récupérer la value du span compteur, lui ajouter 1, et le réécrire
-
-    // }
-
-
-
-
-}
-
-const select = document.getElementById("sortBy");
-
-const photographBuilder = new photographerBuilder;
-
-// evenement qui detecte le "change" sur le select
-select.addEventListener('change', function () {
-    photographBuilder.sortMedia();
-});
-
-// evenement qui deteche un "click" sur tous les coeurs
-
-// etape 1 : déclarer l'évènement
-// étape 2 : s'assurer que l'event fonctionne puis lancer la fonction d'increment des likes ( photographUtil.incrementlike(this) )
 
 init();
 
