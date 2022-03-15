@@ -227,12 +227,14 @@ form #message {
     object-fit: cover;
     width: 255px;
     height: 255px;
+    cursor: pointer;
 }
 
 #photographeMedias .album video {
     object-fit: cover;
     width: 255px;
     height: 255px;
+    cursor: pointer;
 }
 
 #photographeMedias .album video .caption {
@@ -247,4 +249,22 @@ form #message {
     justify-content: space-between;
     align-items: center;
     color: #901C1C;
+}
+
+#lightbox
+{
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+}
+
+#lightbox.active
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
