@@ -64,7 +64,7 @@ function photographerFactory(data) {
         const price_likes = document.createElement('div');
         price_likes.setAttribute('class', 'price');
         const likesSpan = document.createElement("span");
-        likesSpan.textContent = "283 983 ";
+        likesSpan.textContent = "233 443 ";
         const heart = document.createElement('i');
         heart.setAttribute('aria-label', 'likes');
         heart.setAttribute('class', 'fas fa-heart');
@@ -160,6 +160,7 @@ function photographerFactory(data) {
             like.appendChild(heart);
 
         }
+
 
 
         return (album);

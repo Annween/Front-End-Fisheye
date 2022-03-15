@@ -140,6 +140,23 @@ form #message {
     margin-top: 25px;
 }
 
+.sort .dropdown:hover .dropbtn .fa-angle-down
+{
+    display: none;
+}
+
+.sort .dropdown .dropbtn .fa-angle-up
+{
+    display: none;
+}
+
+
+.sort .dropdown:hover .dropbtn .fa-angle-up
+{
+    display: block;
+}
+
+
 .dropbtn {
     background-color: #901C1C;
     color: white;

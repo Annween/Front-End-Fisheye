@@ -4,7 +4,12 @@ class PhotographerUtils {
     sortMedia(tri, mediaArray) {
 
         if (tri == "titre") {
-            mediaArray = mediaArray.sort();
+
+            mediaArray.sort(function(a, b){
+                if(a.title < b.title) { return -1; }
+                if(a.title > b.title) { return 1; }
+                return 0;
+            })
         }
 
         if (tri == "date") {
@@ -23,8 +28,19 @@ class PhotographerUtils {
     incrementLike(coeurIcon) {
 
         const compteur = coeurIcon.parentNode.querySelectorAll('.compteur'); //depuis le parent je prend le compteur
-        const compteurValue = compteur.innerHTML; // je parse sa valeur
-        console.log(compteurValue);
+        //const compteurValues = compteur.innerText; // je parse sa valeur
+
+        for(let compteurValue of compteur)
+        {
+            //const nb  = parseInt(compteurValue.innerText);
+            const nb = parseInt(compteurValue.innerText);
+            compteurValue.innerHTML = nb + 1;
+
+            //console.log(parseInt(compteurValue.innerHTML) + 1);
+        }
+
+        
+        //console.log(compteurValue);
 
         // étape 1 : à partir de l'icone, remonter au parent avec une recherche Google : js get parent element
         // étape 2 : à partir du parent, descendre vers l'enfant ayant la classe que l'on cible (chez nous, compteur) : Google : js get child with class
