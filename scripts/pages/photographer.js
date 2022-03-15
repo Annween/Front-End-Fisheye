@@ -60,7 +60,16 @@ async function init () {
   document.querySelectorAll('.incrementLike').forEach(heart => heart.addEventListener('click', function () {
     photographerUtils.incrementLike(this)
   }))
+
+  photographerUtils.slides()
+
+
 };
+
+function closeLightBox()
+{
+  document.getElementById('lightbox').classList.remove('active')
+}
 
 (function () {
   init()

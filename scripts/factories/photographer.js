@@ -150,37 +150,7 @@ function photographerFactory (data) {
       like.appendChild(heart)
     }
 
-    const lightbox = document.createElement('div')
-    lightbox.setAttribute('id', 'lightbox')
 
-    const allMedia = document.querySelectorAll('.lightboxImg')
-    allMedia.forEach(media => {
-      media.addEventListener('click', e => {
-        lightbox.classList.add('active')
-
-        if (jpg.split('.').pop() === 'jpg') {
-          console.log(media.getAttribute('alt'))
-
-          if (media.getAttribute('alt') == title) {
-            const img = document.createElement('img')
-            img.src = jpg
-            lightbox.appendChild(img)
-          }
-        }
-      })
-
-      if (mp4.split('.').pop() === 'mp4') {
-        if (media.getAttribute('alt') == title) {
-          const video = document.createElement('video')
-          const source = document.createElement('source')
-          source.setAttribute('src', mp4)
-          source.setAttribute('type', 'video/mp4')
-          lightbox.appendChild(video)
-        }
-      }
-    })
-
-    document.body.appendChild(lightbox)
 
     return (album)
   }
