@@ -195,6 +195,7 @@ form #message {
     border-top: 2px solid white;
     margin-block-start: 0;
     margin-block-end: 0;
+    cursor: pointer;
 }
 
 .dropdown-content a:hover {
@@ -276,9 +277,10 @@ form #message {
 
 #lightbox img
 {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+
+    max-width: 90%;
+    max-height: 80%;
+    padding: 4px;
 }
 
 #lightbox video

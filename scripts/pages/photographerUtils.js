@@ -21,7 +21,7 @@ class PhotographerUtils {
 
     if (tri == 'popularite') {
       mediaArray = mediaArray.sort(function (a, b) {
-        return a.likes - b.likes
+        return b.likes - a.likes
       })
     }
 
@@ -56,8 +56,6 @@ class PhotographerUtils {
       media.addEventListener('click', e => {
         lightbox.classList.add('active')
         const extension = e.target.src
-        console.log(extension.split('.').pop())
-
         if (extension.split('.').pop() === 'jpg') {
           const img = document.createElement('img')
           img.src = e.target.src
@@ -83,19 +81,8 @@ class PhotographerUtils {
       })
     })
 
-    const prev = document.createElement('a')
-    prev.setAttribute('class', 'prev')
-    prev.innerHTML = '&#10094;'
-
-    const next = document.createElement('a')
-    next.setAttribute('class', 'next')
-    next.innerHTML = '&#10095;'
-
-
     document.body.appendChild(lightbox)
     lightbox.appendChild(closeCursor)
-    lightbox.appendChild(prev)
-    lightbox.appendChild(next)
   }
 
   // evenement qui deteche un "click" sur tous les coeurs
