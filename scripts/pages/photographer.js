@@ -24,15 +24,18 @@ function displayPhotographerData (photographer) {
 };
 
 // display media data dynamically for each photographer
-function displayMediaData (photographerData) {
+function displayMediaData (photographerMedias) {
   const photographersSection = document.getElementById('photographeMedias')
   photographersSection.innerHTML = ''
 
-  photographerData.forEach((media) => {
+  photographerMedias.forEach((media) => {
     const profileModel = photographerFactory(media)
     const medias = profileModel.getMediaPage()
     photographersSection.appendChild(medias)
   })
+
+  // je vais appeler une fonction de la factory pour boucler sur tous les médias et afficher le nombre total de like dans l'info barre
+
 };
 
 async function init () {
@@ -57,18 +60,22 @@ async function init () {
   })
 
   // à chaque clic sur un coeur...
-  document.querySelectorAll('.incrementLike').forEach(heart => heart.addEventListener('click', function () {
-    photographerUtils.incrementLike(this)
-  }))
+  document.addEventListener('click', function (e) {
+    
+    if (e.target.classList.contains('incrementLike')) {
+      photographerUtils.incrementLike(e.target)
+    }
+  }, false);
 
-  photographerUtils.slides()
-
+  // je met un commentaire ici pour expliquer ce qui se passe
+  photographerUtils.initLightbox()
 
 };
 
 function closeLightBox()
 {
   document.getElementById('lightbox').classList.remove('active')
+  // récupérer l'image dans la lightbox
 }
 
 (function () {

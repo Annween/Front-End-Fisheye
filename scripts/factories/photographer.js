@@ -59,9 +59,11 @@ function photographerFactory (data) {
     profileImg.setAttribute('src', `assets/photographers/${portrait}`)
     profileImg.setAttribute('alt', 'profilePic')
 
+    // création de mon info barre dans le footer
     const price_likes = document.createElement('div')
     price_likes.setAttribute('class', 'price')
     const likesSpan = document.createElement('span')
+    likesSpan.setAttribute('class', 'compteurLikeTotal')
     likesSpan.textContent = '233 443 '
     const heart = document.createElement('i')
     heart.setAttribute('aria-label', 'likes')

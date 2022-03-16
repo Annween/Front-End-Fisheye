@@ -30,19 +30,14 @@ class PhotographerUtils {
 
   // ajoute 1 au coeur d'un média
   incrementLike (coeurIcon) {
+
     const compteur = coeurIcon.parentNode.querySelectorAll('.compteur') // depuis le parent je prend le compteur
+    compteur[0].innerHTML = parseInt(compteur[0].innerHTML) + 1
 
-    for (const compteurValue of compteur) {
-      const nb = parseInt(compteurValue.innerText)
-      compteurValue.innerHTML = nb + 1
-    }
-
-    // étape 1 : à partir de l'icone, remonter au parent avec une recherche Google : js get parent element
-    // étape 2 : à partir du parent, descendre vers l'enfant ayant la classe que l'on cible (chez nous, compteur) : Google : js get child with class
-    // étape 3 : récupérer la value du span compteur, lui ajouter 1, et le réécrire
   }
 
-  slides () {
+  // ici, je met un commentaire pour expliquer la fonction
+  initLightbox () {
     const lightbox = document.createElement('div')
     lightbox.setAttribute('id', 'lightbox')
 
@@ -51,33 +46,40 @@ class PhotographerUtils {
     closeCursor.setAttribute('onclick', 'closeLightBox()')
     closeCursor.innerHTML = '&times;'
 
+    // pour chaque media de la page...
     const allMedia = document.querySelectorAll('.lightboxImg')
+    console.log(allMedia)
     allMedia.forEach(media => {
+
+      // je bind un click
       media.addEventListener('click', e => {
+        
         lightbox.classList.add('active')
         const extension = e.target.src
+
+        // si le media est une image
         if (extension.split('.').pop() === 'jpg') {
           const img = document.createElement('img')
           img.src = e.target.src
 
-          const childImg = lightbox.querySelector('#lightbox :nth-child(2)')
-          while (lightbox.querySelector('#lightbox :nth-child(2)')) {
-            lightbox.removeChild(childImg)
-          }
           lightbox.appendChild(img)
         }
 
+        // si le media est une vidéo
         if (extension.split('.').pop() === 'mp4') {
           const video = document.createElement('video')
           const source = document.createElement('source')
+          
           source.src = e.target.src
           source.setAttribute('type', 'video/mp4')
-          const childVideo = lightbox.querySelector('#lightbox :nth-child(2)')
-          while (lightbox.querySelector('#lightbox :nth-child(2)')) {
-            lightbox.removeChild(childVideo)
-          }
           lightbox.appendChild(video)
         }
+
+        // création de la flèche précédent
+          // appel de la fonction this.showMedia(indexDuMediaAAfficher)
+        // création de la flèche suivant
+          // appel de la fonction this.showMedia(indexDuMediaAAfficher)
+
       })
     })
 
