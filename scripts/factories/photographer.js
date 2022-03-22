@@ -156,14 +156,18 @@ function photographerFactory (data) {
     return (album)
   }
 
+  // insère le total de like d'un photographe dans la footer barre
   function getTotalLikes () {
-    //const prices = document.querySelector('.compteurLikeTotal')
+    
+    let totalLikes = 0
 
-    //const totalLikesSpan = document.querySelector('.compteurLikeTotal');
+    data.forEach((media) => {
 
+      console.log(media);
 
-    console.log(likes);
-   //totalLikesSpan.innerHTML = likes.reduce((a, b) => a + b, 0);
+    });
+
+    console.log(totalLikes); // totalLikes sera à mettre dans la footerbarre
 
 
   }

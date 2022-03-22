@@ -26,7 +26,6 @@ function displayPhotographerData (photographer) {
 // display media data dynamically for each photographer
 function displayMediaData (photographerMedias) {
   const photographersSection = document.getElementById('photographeMedias')
-  //const photographerFooter = document.getElementById('footer')
 
   photographersSection.innerHTML = ''
 
@@ -34,15 +33,12 @@ function displayMediaData (photographerMedias) {
     const profileModel = photographerFactory(media)
     const medias = profileModel.getMediaPage()
     photographersSection.appendChild(medias)
-
-    const totalLikes = profileModel.getTotalLikes()
-    //photographerFooter.appendChild(totalLikes)
   })
 
-
-
   // je vais appeler une fonction de la factory pour boucler sur tous les médias et afficher le nombre total de like dans l'info barre
-
+  const totalLikeModel = photographerFactory(photographerMedias)
+  totalLikeModel.getTotalLikes();
+  
 };
 
 async function init () {
