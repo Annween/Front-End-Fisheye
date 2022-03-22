@@ -3,7 +3,7 @@
 class PhotographerUtils {
   // sort media switch criteria
   sortMedia (tri, mediaArray) {
-    if (tri == 'titre') {
+    if (tri === 'titre') {
       mediaArray.sort(function (a, b) {
         if (a.title < b.title) {
           return -1
@@ -15,11 +15,11 @@ class PhotographerUtils {
       })
     }
 
-    if (tri == 'date') {
+    if (tri === 'date') {
       mediaArray = mediaArray.sort((a, b) => new Date(b.date) - new Date(a.date))
     }
 
-    if (tri == 'popularite') {
+    if (tri === 'popularite') {
       mediaArray = mediaArray.sort(function (a, b) {
         return b.likes - a.likes
       })
@@ -30,10 +30,8 @@ class PhotographerUtils {
 
   // ajoute 1 au coeur d'un média
   incrementLike (coeurIcon) {
-
     const compteur = coeurIcon.parentNode.querySelectorAll('.compteur') // depuis le parent je prend le compteur
     compteur[0].innerHTML = parseInt(compteur[0].innerHTML) + 1
-
   }
 
   // ici, je met un commentaire pour expliquer la fonction
@@ -47,13 +45,11 @@ class PhotographerUtils {
     closeCursor.innerHTML = '&times;'
 
     // pour chaque media de la page...
-    const allMedia = document.querySelectorAll('.lightboxImg')
-    console.log(allMedia)
+    const allMedia = document.querySelectorAll('.lightboxMedia')
+    // console.log(allMedia)
     allMedia.forEach(media => {
-
       // je bind un click
       media.addEventListener('click', e => {
-        
         lightbox.classList.add('active')
         const extension = e.target.src
 
@@ -61,34 +57,30 @@ class PhotographerUtils {
         if (extension.split('.').pop() === 'jpg') {
           const img = document.createElement('img')
           img.src = e.target.src
-
           lightbox.appendChild(img)
         }
 
         // si le media est une vidéo
-        if (extension.split('.').pop() === 'mp4') {
+        const extensionVideo = e.target.querySelector('source').src
+        if (extensionVideo.split('.').pop() === 'mp4') {
           const video = document.createElement('video')
           const source = document.createElement('source')
-          
-          source.src = e.target.src
+          video.setAttribute('controls', '')
+          source.src = e.target.querySelector('source').src
           source.setAttribute('type', 'video/mp4')
           lightbox.appendChild(video)
+          video.appendChild(source)
+          lightbox.appendChild(closeCursor)
         }
 
         // création de la flèche précédent
-          // appel de la fonction this.showMedia(indexDuMediaAAfficher)
+        // appel de la fonction this.showMedia(indexDuMediaAAfficher)
         // création de la flèche suivant
-          // appel de la fonction this.showMedia(indexDuMediaAAfficher)
-
+        // appel de la fonction this.showMedia(indexDuMediaAAfficher)
       })
     })
 
     document.body.appendChild(lightbox)
     lightbox.appendChild(closeCursor)
   }
-
-  // evenement qui deteche un "click" sur tous les coeurs
-
-// etape 1 : déclarer l'évènement
-// étape 2 : s'assurer que l'event fonctionne puis lancer la fonction d'increment des likes ( photographUtil.incrementlike(this) )
 }

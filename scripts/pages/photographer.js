@@ -26,13 +26,20 @@ function displayPhotographerData (photographer) {
 // display media data dynamically for each photographer
 function displayMediaData (photographerMedias) {
   const photographersSection = document.getElementById('photographeMedias')
+  //const photographerFooter = document.getElementById('footer')
+
   photographersSection.innerHTML = ''
 
   photographerMedias.forEach((media) => {
     const profileModel = photographerFactory(media)
     const medias = profileModel.getMediaPage()
     photographersSection.appendChild(medias)
+
+    const totalLikes = profileModel.getTotalLikes()
+    //photographerFooter.appendChild(totalLikes)
   })
+
+
 
   // je vais appeler une fonction de la factory pour boucler sur tous les médias et afficher le nombre total de like dans l'info barre
 
@@ -55,26 +62,34 @@ async function init () {
 
   // evenement qui detecte la demande de tri des médias
   document.getElementById('dropdown').addEventListener('click', function (e) {
+    document.getElementById('dropbtn').innerHTML = e.target.innerHTML
     mediaArray = photographerUtils.sortMedia(e.target.id, mediaArray)
     displayMediaData(mediaArray)
   })
 
   // à chaque clic sur un coeur...
   document.addEventListener('click', function (e) {
-    
+
     if (e.target.classList.contains('incrementLike')) {
       photographerUtils.incrementLike(e.target)
     }
   }, false);
 
-  // je met un commentaire ici pour expliquer ce qui se passe
-  photographerUtils.initLightbox()
+  // appel de la fonction initLightbox qui initialise la lightbox au clic
+  // rendre le click rétroactif
+
+    photographerUtils.initLightbox()
+
+
 
 };
 
 function closeLightBox()
 {
   document.getElementById('lightbox').classList.remove('active')
+  const images = document.querySelector('.lightboxMedia');
+
+
   // récupérer l'image dans la lightbox
 }
 

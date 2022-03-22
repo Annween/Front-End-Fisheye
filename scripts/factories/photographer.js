@@ -121,7 +121,7 @@ function photographerFactory (data) {
     // si le fichier contient l'extension JPG on l'affiche avec <img>
     if (jpg.split('.').pop() === 'jpg') {
       const img = document.createElement('img')
-      img.setAttribute('class', 'lightboxImg')
+      img.setAttribute('class', 'lightboxMedia')
       img.setAttribute('src', jpg)
       // img.setAttribute('onclick', 'openModal()');
       img.setAttribute('alt', title)
@@ -137,7 +137,8 @@ function photographerFactory (data) {
     // si le fichier contient l'extension JPG on l'affiche avec <video>
     if (mp4.split('.').pop() === 'mp4') {
       const videoPlayer = document.createElement('video')
-      videoPlayer.setAttribute('alt', title)
+      videoPlayer.setAttribute('controls', '')
+      videoPlayer.setAttribute('class', 'lightboxMedia')
       const source = document.createElement('source')
       source.setAttribute('src', mp4)
       source.setAttribute('type', 'video/mp4')
@@ -152,10 +153,20 @@ function photographerFactory (data) {
       like.appendChild(heart)
     }
 
-
-
     return (album)
   }
 
-  return { getUserCardDOM, getProfilePage, getMediaPage }
+  function getTotalLikes () {
+    //const prices = document.querySelector('.compteurLikeTotal')
+
+    //const totalLikesSpan = document.querySelector('.compteurLikeTotal');
+
+
+    console.log(likes);
+   //totalLikesSpan.innerHTML = likes.reduce((a, b) => a + b, 0);
+
+
+  }
+
+  return { getUserCardDOM, getProfilePage, getMediaPage, getTotalLikes }
 }
