@@ -58,7 +58,7 @@ async function init () {
 
   // evenement qui detecte la demande de tri des médias
   document.getElementById('dropdown').addEventListener('click', function (e) {
-    document.getElementById('dropbtn').innerHTML = e.target.innerHTML
+    document.getElementById('dropbtn').innerHTML = e.target.innerHTML + "<i class='fas fa-angle-up'></i>"
     mediaArray = photographerUtils.sortMedia(e.target.id, mediaArray)
     displayMediaData(mediaArray)
   })
@@ -74,8 +74,13 @@ async function init () {
   // appel de la fonction initLightbox qui initialise la lightbox au clic
   // rendre le click rétroactif
 
-    photographerUtils.initLightbox()
+  //document.addEventListener('click', function (e) {
 
+    //if (e.target.classList.contains('lightboxMedia')) {
+      photographerUtils.initLightbox()
+    //}
+
+ // })
 
 
 };
@@ -83,7 +88,6 @@ async function init () {
 function closeLightBox()
 {
   document.getElementById('lightbox').classList.remove('active')
-  const images = document.querySelector('.lightboxMedia');
 
 
   // récupérer l'image dans la lightbox

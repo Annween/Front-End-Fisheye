@@ -64,7 +64,7 @@ function photographerFactory (data) {
     price_likes.setAttribute('class', 'price')
     const likesSpan = document.createElement('span')
     likesSpan.setAttribute('class', 'compteurLikeTotal')
-    likesSpan.textContent = '233 443 '
+
     const heart = document.createElement('i')
     heart.setAttribute('aria-label', 'likes')
     heart.setAttribute('class', 'fas fa-heart')
@@ -139,6 +139,7 @@ function photographerFactory (data) {
       const videoPlayer = document.createElement('video')
       videoPlayer.setAttribute('controls', '')
       videoPlayer.setAttribute('class', 'lightboxMedia')
+      videoPlayer.setAttribute('alt', title)
       const source = document.createElement('source')
       source.setAttribute('src', mp4)
       source.setAttribute('type', 'video/mp4')
@@ -163,11 +164,23 @@ function photographerFactory (data) {
 
     data.forEach((media) => {
 
-      console.log(media);
+      totalLikes += media.likes;
 
     });
 
+
     console.log(totalLikes); // totalLikes sera à mettre dans la footerbarre
+    let update =  document.querySelector('.compteurLikeTotal')
+
+    update.innerHTML = totalLikes + " " + "<i class='fas fa-heart'></i>";
+
+ //document.querySelector('.fas .fa-heart').addEventListener('click', function ()
+    //{
+     // console.log('ok')
+     // update.innerHTML = (update.innerHTML) +1
+    //})
+
+
 
 
   }

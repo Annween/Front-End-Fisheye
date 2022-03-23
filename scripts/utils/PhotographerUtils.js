@@ -1,5 +1,3 @@
-
-// eslint-disable-next-line no-unused-vars
 class PhotographerUtils {
   // sort media switch criteria
   sortMedia (tri, mediaArray) {
@@ -36,6 +34,7 @@ class PhotographerUtils {
 
   // ici, je met un commentaire pour expliquer la fonction
   initLightbox () {
+
     const lightbox = document.createElement('div')
     lightbox.setAttribute('id', 'lightbox')
 
@@ -46,41 +45,102 @@ class PhotographerUtils {
 
     // pour chaque media de la page...
     const allMedia = document.querySelectorAll('.lightboxMedia')
-    // console.log(allMedia)
+    //console.log(allMedia)
     allMedia.forEach(media => {
       // je bind un click
       media.addEventListener('click', e => {
         lightbox.classList.add('active')
-        const extension = e.target.src
 
         // si le media est une image
+        const extension = e.target.src
         if (extension.split('.').pop() === 'jpg') {
           const img = document.createElement('img')
           img.src = e.target.src
+
+          const caption = document.createElement('h4');
+          caption.setAttribute('class', 'title');
+          caption.innerHTML = e.target.alt
+
           lightbox.appendChild(img)
+          lightbox.appendChild(caption)
         }
 
         // si le media est une vidéo
-        const extensionVideo = e.target.querySelector('source').src
-        if (extensionVideo.split('.').pop() === 'mp4') {
+        //const extensionVideo = e.target.querySelector('source').src
+        if (e.target.querySelector('source').src.split('.').pop() === 'mp4') {
           const video = document.createElement('video')
           const source = document.createElement('source')
+
           video.setAttribute('controls', '')
-          source.src = e.target.querySelector('source').src
+          source.src = e.target.src
           source.setAttribute('type', 'video/mp4')
+
+          const caption = document.createElement('h4');
+          caption.setAttribute('class', 'title');
+          caption.innerHTML = e.target.alt
+
+
           lightbox.appendChild(video)
           video.appendChild(source)
           lightbox.appendChild(closeCursor)
+          lightbox.appendChild(caption)
         }
+
+
+
+
+        //console.log(medias)
+
 
         // création de la flèche précédent
         // appel de la fonction this.showMedia(indexDuMediaAAfficher)
+
+
         // création de la flèche suivant
         // appel de la fonction this.showMedia(indexDuMediaAAfficher)
       })
+
     })
+    const prev = document.createElement('a');
+    prev.setAttribute('class', 'prev')
+    prev.innerHTML = '&#10094;';
+
+    const next = document.createElement('a');
+    next.setAttribute('class', 'next')
+    next.innerHTML = '&#10095;';
+    prev.addEventListener('click', this.showMedia(-1))
+    next.addEventListener('click', this.showMedia(1))
+
+
+
 
     document.body.appendChild(lightbox)
     lightbox.appendChild(closeCursor)
+
+    lightbox.appendChild(prev)
+    lightbox.appendChild(next)
+  }
+
+  showMedia(i)
+  {
+    const allMedia = document.querySelectorAll('.lightboxMedia')
+    //retourne le nombre d'images présentes dans le tableau
+    const nbSlides = allMedia.length
+
+
+    allMedia[i].style.display = "none";
+
+    //si i est < au nbTotal d'image on incrémente i de 1 pour chaque image
+    if (i < nbSlides - 1 )
+    {
+      i++;
+  }
+    //une fois fini on revient au début
+    else
+    {
+      i = 0;
+    }
+
+    allMedia.style.display = "block";
   }
 }
