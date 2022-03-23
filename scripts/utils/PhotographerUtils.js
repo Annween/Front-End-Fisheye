@@ -35,112 +35,107 @@ class PhotographerUtils {
   // ici, je met un commentaire pour expliquer la fonction
   initLightbox () {
 
+    // création lightbox
     const lightbox = document.createElement('div')
     lightbox.setAttribute('id', 'lightbox')
-
-    const closeCursor = document.createElement('span')
-    closeCursor.setAttribute('id', 'close')
-    closeCursor.setAttribute('onclick', 'closeLightBox()')
-    closeCursor.innerHTML = '&times;'
+    document.body.appendChild(lightbox)
 
     // pour chaque media de la page...
     const allMedia = document.querySelectorAll('.lightboxMedia')
-    //console.log(allMedia)
-    allMedia.forEach(media => {
+    const util = this;
+    
+    allMedia.forEach(function (media, index){
+
       // je bind un click
       media.addEventListener('click', e => {
+
         lightbox.classList.add('active')
 
-        // si le media est une image
-        const extension = e.target.src
-        if (extension.split('.').pop() === 'jpg') {
-          const img = document.createElement('img')
-          img.src = e.target.src
+        util.showMedia(index);
 
-          const caption = document.createElement('h4');
-          caption.setAttribute('class', 'title');
-          caption.innerHTML = e.target.alt
-
-          lightbox.appendChild(img)
-          lightbox.appendChild(caption)
-        }
-
-        // si le media est une vidéo
-        //const extensionVideo = e.target.querySelector('source').src
-        if (e.target.querySelector('source').src.split('.').pop() === 'mp4') {
-          const video = document.createElement('video')
-          const source = document.createElement('source')
-
-          video.setAttribute('controls', '')
-          source.src = e.target.src
-          source.setAttribute('type', 'video/mp4')
-
-          const caption = document.createElement('h4');
-          caption.setAttribute('class', 'title');
-          caption.innerHTML = e.target.alt
-
-
-          lightbox.appendChild(video)
-          video.appendChild(source)
-          lightbox.appendChild(closeCursor)
-          lightbox.appendChild(caption)
-        }
-
-
-
-
-        //console.log(medias)
-
-
-        // création de la flèche précédent
-        // appel de la fonction this.showMedia(indexDuMediaAAfficher)
-
-
-        // création de la flèche suivant
-        // appel de la fonction this.showMedia(indexDuMediaAAfficher)
+        
       })
 
+    });
+  }
+
+  // affiche le media à l'index demandé
+  showMedia(index)
+  {
+
+    const util = this;
+    
+    // reset la lightbox
+    document.getElementById('lightbox').innerHTML = ""
+
+    const allMedia = document.querySelectorAll('.lightboxMedia')
+    
+    const source = allMedia[index].src
+
+    // si le media est une image
+    if (source.split('.').pop() === 'jpg') {
+      
+      const img = document.createElement('img')
+      img.src = allMedia[index].src
+
+      const caption = document.createElement('h4');
+      caption.setAttribute('class', 'title');
+      caption.innerHTML = allMedia[index].alt
+
+      lightbox.appendChild(img)
+      lightbox.appendChild(caption)
+    }
+
+    // si le media est une vidéo
+    else if (allMedia[index].querySelector('source').src.split('.').pop() === 'mp4') {
+      const video = document.createElement('video')
+      const source = document.createElement('source')
+
+      video.setAttribute('controls', '')
+      source.src = allMedia[index].querySelector('source').src
+      source.setAttribute('type', 'video/mp4')
+
+      const caption = document.createElement('h4');
+      caption.setAttribute('class', 'title');
+      caption.innerHTML = allMedia[index].parentNode.querySelector('h4').innerHTML
+
+
+      lightbox.appendChild(video)
+      video.appendChild(source)
+      lightbox.appendChild(caption)
+    }
+
+    // création curseur pour fermer
+    const closeCursor = document.createElement('span')
+    closeCursor.setAttribute('id', 'close')
+    closeCursor.addEventListener('click', e => {
+      
+      document.getElementById('lightbox').classList.remove('active')
+      
     })
+    closeCursor.innerHTML = '&times;'
+
+    // création flèche précédent
     const prev = document.createElement('a');
     prev.setAttribute('class', 'prev')
     prev.innerHTML = '&#10094;';
 
+    prev.addEventListener('click', e => {
+
+      util.showMedia(index - 1)
+
+      
+    })
+
+    // création flèche suivant
     const next = document.createElement('a');
     next.setAttribute('class', 'next')
     next.innerHTML = '&#10095;';
-    prev.addEventListener('click', this.showMedia(-1))
-    next.addEventListener('click', this.showMedia(1))
 
-
-
-
-    document.body.appendChild(lightbox)
+    // insertion dans le dom
     lightbox.appendChild(closeCursor)
-
     lightbox.appendChild(prev)
     lightbox.appendChild(next)
-  }
 
-  showMedia(i)
-  {
-    const allMedia = document.querySelectorAll('.lightboxMedia')
-    //retourne le nombre d'images présentes dans le tableau
-    const nbSlides = allMedia.length
-
-
-    allMedia[i].style.display = "none";
-
-    //si i est < au nbTotal d'image on incrémente i de 1 pour chaque image
-    if (i < nbSlides - 1 )
-    {
-      i++;
-  }
-    //une fois fini on revient au début
-    else
-    {
-      i = 0;
-    }
-
-    allMedia.style.display = "block";
   }
 }

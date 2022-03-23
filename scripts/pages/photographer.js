@@ -85,14 +85,6 @@ async function init () {
 
 };
 
-function closeLightBox()
-{
-  document.getElementById('lightbox').classList.remove('active')
-
-
-  // récupérer l'image dans la lightbox
-}
-
 (function () {
   init()
 })()
