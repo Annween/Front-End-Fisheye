@@ -79,13 +79,13 @@ async function init () {
   // appel de la fonction initLightbox qui initialise la lightbox au clic
   // rendre le click rétroactif
 
-  //document.addEventListener('click', function (e) {
+  document.addEventListener('click', function (e) {
 
-   // if (e.target.classList.contains('lightboxMedia')) {
+    if (e.target.classList.contains('lightboxMedia')) {
       photographerUtils.initLightbox()
-    //}
+    }
 
-  //})
+  })
 
 
 };

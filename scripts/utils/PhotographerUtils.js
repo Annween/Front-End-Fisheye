@@ -32,7 +32,7 @@ class PhotographerUtils {
     compteur[0].innerHTML = parseInt(compteur[0].innerHTML) + 1
   }
 
-  // ici, je met un commentaire pour expliquer la fonction
+  // initialise la lightbox
   initLightbox () {
 
     // création lightbox
@@ -64,6 +64,7 @@ class PhotographerUtils {
   {
 
     const util = this;
+    const lightbox = document.getElementById('lightbox')
     
     // reset la lightbox
     document.getElementById('lightbox').innerHTML = ""
