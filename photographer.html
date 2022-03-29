@@ -18,7 +18,7 @@
 <body>
     <!-- HEADER -->
     <header>
-        <img src="assets/images/logo.png" class="logo" alt="logo" />
+       <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="logo" /></a>
     </header>
 
 
@@ -27,13 +27,13 @@
         <section id="photographeInfos"></section>
         <!-- Dropdown filter -->
         <div class="sort">
-        <label>Trier par : </label>
+            <label><b>Trier par : </b></label>
         <div id="dropdown" class="dropdown">
-            <button id="dropbtn" class="dropbtn">Popularité <i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></button>
+            <button id="dropbtn" class="dropbtn" role="button" aria-haspopup="listbox" aria-expanded="true">Popularité <i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></button>
             <div id="dropdown-content" class="dropdown-content">
-                <p id="popularite">Popularité</p>
-                <p id="date">Date</p>
-                <p id="titre">Titre</p>
+                <p role="listbox" id="popularite">Popularité</p>
+                <p role="listbox" id="date">Date</p>
+                <p role="listbox" id="titre">Titre</p>
             </div>
         </div>
         </div>

@@ -159,7 +159,7 @@ function photographerFactory (data) {
 
   // insère le total de like d'un photographe dans la footer barre
   function getTotalLikes () {
-    
+
     let totalLikes = 0
 
     data.forEach((media) => {
@@ -169,21 +169,21 @@ function photographerFactory (data) {
     });
 
 
-    console.log(totalLikes); // totalLikes sera à mettre dans la footerbarre
-    let update =  document.querySelector('.compteurLikeTotal')
 
-    update.innerHTML = totalLikes + " " + "<i class='fas fa-heart'></i>";
-
- //document.querySelector('.fas .fa-heart').addEventListener('click', function ()
-    //{
-     // console.log('ok')
-     // update.innerHTML = (update.innerHTML) +1
-    //})
+    document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " "+ "<i class='fas fa-heart'></i>";
 
 
+    document.addEventListener('click', function (e) {
+      if (e.target.classList.contains('incrementLike')) {
+        document.querySelector('.compteurLikeTotal').innerHTML = parseInt( document.querySelector('.compteurLikeTotal').innerHTML) + 1 +  " " + "<i class='fas fa-heart'></i>"
+      }
 
 
+    })
   }
+
+
+
 
   return { getUserCardDOM, getProfilePage, getMediaPage, getTotalLikes }
 }

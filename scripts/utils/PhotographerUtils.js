@@ -74,6 +74,9 @@ class PhotographerUtils {
 
     // si le media est une image
     if (source.split('.').pop() === 'jpg') {
+
+      const container = document.createElement('div')
+      container.setAttribute('class', 'container')
       
       const img = document.createElement('img')
       img.src = allMedia[index].src
@@ -82,12 +85,18 @@ class PhotographerUtils {
       caption.setAttribute('class', 'title');
       caption.innerHTML = allMedia[index].alt
 
-      lightbox.appendChild(img)
-      lightbox.appendChild(caption)
+      lightbox.appendChild(container)
+      container.appendChild(img)
+      container.appendChild(caption)
     }
 
     // si le media est une vidéo
     else if (allMedia[index].querySelector('source').src.split('.').pop() === 'mp4') {
+
+
+      const container = document.createElement('div')
+      container.setAttribute('class', 'container')
+
       const video = document.createElement('video')
       const source = document.createElement('source')
 
@@ -95,14 +104,18 @@ class PhotographerUtils {
       source.src = allMedia[index].querySelector('source').src
       source.setAttribute('type', 'video/mp4')
 
+      const captionContainer = document.createElement('div')
+      captionContainer.setAttribute('class', 'captionContainer')
+
       const caption = document.createElement('h4');
       caption.setAttribute('class', 'title');
       caption.innerHTML = allMedia[index].parentNode.querySelector('h4').innerHTML
 
 
-      lightbox.appendChild(video)
+      lightbox.appendChild(container)
+      container.appendChild(video)
       video.appendChild(source)
-      lightbox.appendChild(caption)
+      container.appendChild(caption)
     }
 
     // création curseur pour fermer
@@ -124,13 +137,20 @@ class PhotographerUtils {
 
       util.showMedia(index - 1)
 
-      
+        util.showMedia(0)
     })
 
     // création flèche suivant
     const next = document.createElement('a');
     next.setAttribute('class', 'next')
     next.innerHTML = '&#10095;';
+    next.addEventListener('click', e => {
+
+      util.showMedia(index +1)
+
+
+
+    })
 
     // insertion dans le dom
     lightbox.appendChild(closeCursor)

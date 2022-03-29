@@ -56,9 +56,14 @@ async function init () {
   mediaArray = photographerUtils.sortMedia('popularite', mediaArray)
   displayMediaData(mediaArray)
 
+
+
   // evenement qui detecte la demande de tri des médias
   document.getElementById('dropdown').addEventListener('click', function (e) {
-    document.getElementById('dropbtn').innerHTML = e.target.innerHTML + "<i class='fas fa-angle-up'></i>"
+  document.getElementById('dropbtn').innerHTML = e.target.innerText + "<i class='fas fa-angle-up'></i>"
+
+
+
     mediaArray = photographerUtils.sortMedia(e.target.id, mediaArray)
     displayMediaData(mediaArray)
   })
@@ -76,11 +81,11 @@ async function init () {
 
   //document.addEventListener('click', function (e) {
 
-    //if (e.target.classList.contains('lightboxMedia')) {
+   // if (e.target.classList.contains('lightboxMedia')) {
       photographerUtils.initLightbox()
     //}
 
- // })
+  //})
 
 
 };

@@ -1,3 +1,7 @@
+body {
+    font-family: "DM Sans", sans-serif;
+}
+
 #main {
     margin: 0 100px;
 }
@@ -52,6 +56,7 @@
 #sort {
     margin-top: 20px;
 }
+
 
 .contact_button {
     font-size: 20px;
@@ -167,6 +172,7 @@ form #message {
     text-align: left;
     display: flex;
     justify-content: space-between;
+    border-radius: 3px 3px 0 0;
 }
 
 .dropdown {
@@ -181,6 +187,7 @@ form #message {
     background-color: #901C1C;
     min-width: 160px;
     z-index: 1;
+    border-radius: 0 0 3px 3px;
 }
 
 .dropdown-content {
@@ -275,19 +282,7 @@ form #message {
 
 }
 
-#lightbox img
-{
 
-    max-width: 90%;
-    max-height: 80%;
-    padding: 4px;
-}
-
-#lightbox video
-{
-    width: 50%;
-    object-fit: contain;
-}
 
 
 #lightbox.active
@@ -298,10 +293,29 @@ form #message {
     margin: auto;
 }
 
+#lightbox .container
+{
+    //max-width: 90%;
+    text-align: center;
+}
+
 #lightbox .title
 {
-    display: block;
     color: white;
+}
+
+#lightbox img
+{
+    max-height: 80%;
+    max-width: 100%;
+    padding: 4px;
+}
+
+
+
+#lightbox  video
+{
+    width: 50%;
 }
 
 /* permet de retirer la sélection du texte après un double clique */
