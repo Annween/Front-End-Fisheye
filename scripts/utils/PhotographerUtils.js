@@ -50,6 +50,10 @@ class PhotographerUtils {
       media.addEventListener('click', e => {
 
         lightbox.classList.add('active')
+        if(document.querySelector('#lightbox').length > 1)
+        {
+          document.querySelector('#lightbox').remove()
+        }
 
         util.showMedia(index);
 
@@ -57,6 +61,7 @@ class PhotographerUtils {
       })
 
     });
+
   }
 
   // affiche le media à l'index demandé
@@ -64,7 +69,7 @@ class PhotographerUtils {
   {
 
     const util = this;
-    const lightbox = document.getElementById('lightbox')
+
     
     // reset la lightbox
     document.getElementById('lightbox').innerHTML = ""
@@ -86,7 +91,7 @@ class PhotographerUtils {
       caption.setAttribute('class', 'title');
       caption.innerHTML = allMedia[index].alt
 
-      lightbox.appendChild(container)
+      document.getElementById('lightbox').appendChild(container)
       container.appendChild(img)
       container.appendChild(caption)
     }
@@ -113,7 +118,7 @@ class PhotographerUtils {
       caption.innerHTML = allMedia[index].parentNode.querySelector('h4').innerHTML
 
 
-      lightbox.appendChild(container)
+      document.getElementById('lightbox').appendChild(container)
       container.appendChild(video)
       video.appendChild(source)
       container.appendChild(caption)
@@ -154,9 +159,9 @@ class PhotographerUtils {
     })
 
     // insertion dans le dom
-    lightbox.appendChild(closeCursor)
-    lightbox.appendChild(prev)
-    lightbox.appendChild(next)
+    document.getElementById('lightbox').appendChild(closeCursor)
+    document.getElementById('lightbox').appendChild(prev)
+    document.getElementById('lightbox').appendChild(next)
 
   }
 }
