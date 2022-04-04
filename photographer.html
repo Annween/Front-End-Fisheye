@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <title>Fisheye</title>
-
-    <title>Fisheye - photographe
-    </title>
 </head>
 
 <body>
@@ -28,7 +25,7 @@
         <div class="sort">
             <label><b>Trier par : </b></label>
         <div id="dropdown" class="dropdown">
-            <button id="dropbtn" class="dropbtn" role="button" aria-haspopup="listbox" aria-expanded="true"><span id="sort-button-content">Popularité</span><i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></button>
+            <button id="dropbtn" class="dropbtn" aria-haspopup="listbox" aria-expanded="true"><span id="sort-button-content">Popularité</span><i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></button>
             <div id="dropdown-content" class="dropdown-content">
                 <p role="listbox" id="popularite">Popularité</p>
                 <p role="listbox" id="date">Date</p>
@@ -45,7 +42,7 @@
 
     </div>
 
-    <div id="contact_modal" aria-label="Contact Me" aria-labelledby="modal">
+    <div id="contact_modal">
         <div class="modal">
             <header>
                 <h2>Contactez-moi</h2>
@@ -62,7 +59,7 @@
                     <label for="message">Votre message:</label>
                     <input type="text" id="message" name="message" aria-label="Your message" aria-labelledby="message" />
                 </div>
-                <button id="send" class="contact_button" aria-label="send" >Envoyer</button>
+                <button id="send" class="send" aria-label="send" >Envoyer</button>
             </form>
         </div>
     </div>
@@ -71,11 +68,12 @@
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/utils/PhotographerUtils.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
+    <footer id="footer">
+
+    </footer>
     
 </body>
 
-<footer id="footer">
 
-</footer>
 
 </html>
