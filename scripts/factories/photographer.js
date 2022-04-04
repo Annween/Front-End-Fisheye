@@ -10,16 +10,19 @@ function photographerFactory (data) {
     ahref.setAttribute('href', 'photographer.html?id=' + id)
     const article = document.createElement('article')
     const img = document.createElement('img')
+
     const villePays = document.createElement('span')
     const bio = document.createElement('p')
     const prix = document.createElement('div')
     img.setAttribute('src', picture)
+    img.setAttribute('alt', name)
     const h2 = document.createElement('h2')
     h2.textContent = name
     villePays.textContent = city.concat(', ', country)
     bio.textContent = tagline
     prix.setAttribute('class', 'prix')
     prix.textContent = price + '€ /jour'
+
     ahref.appendChild(article)
     article.appendChild(img)
     article.appendChild(h2)
@@ -31,6 +34,7 @@ function photographerFactory (data) {
 
   // affiche les infos du photographe
   function getProfilePage () {
+
     const section = document.createElement('section')
     const photograph_header = document.createElement('div')
     photograph_header.setAttribute('class', 'photograph-header')
@@ -115,7 +119,7 @@ function photographerFactory (data) {
     compteur.setAttribute('class', 'compteur')
     compteur.textContent = likes
     const heart = document.createElement('i')
-    heart.setAttribute('aria-label', 'likes')
+    //heart.setAttribute('aria-label', 'likes')
     heart.setAttribute('class', 'fas fa-heart incrementLike')
 
     // si le fichier contient l'extension JPG on l'affiche avec <img>
@@ -145,6 +149,7 @@ function photographerFactory (data) {
       source.setAttribute('type', 'video/mp4')
       source.setAttribute('class', 'lightboxImg')
 
+
       album.appendChild(videoPlayer)
       videoPlayer.appendChild(source)
       album.appendChild(caption)
@@ -158,7 +163,7 @@ function photographerFactory (data) {
   }
 
   // insère le total de like d'un photographe dans la footer barre
-  function getTotalLikes () {
+  function getTotalLikes() {
 
     let totalLikes = 0
 
@@ -168,14 +173,10 @@ function photographerFactory (data) {
 
     });
 
-
-
-    document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " "+ "<i class='fas fa-heart'></i>";
-
-
+    document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " " + "<i class='fas fa-heart'></i>";
     document.addEventListener('click', function (e) {
       if (e.target.classList.contains('incrementLike')) {
-        document.querySelector('.compteurLikeTotal').innerHTML = parseInt( document.querySelector('.compteurLikeTotal').innerHTML) + 1 +  " " + "<i class='fas fa-heart'></i>"
+        document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<i class='fas fa-heart'></i>"
       }
 
 

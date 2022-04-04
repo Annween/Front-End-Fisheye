@@ -1,4 +1,4 @@
-class PhotographerUtils {
+ class PhotographerUtils {
   // sort media switch criteria
   sortMedia (tri, mediaArray) {
     if (tri === 'titre') {
@@ -36,9 +36,11 @@ class PhotographerUtils {
   initLightbox () {
 
     // création lightbox
-    const lightbox = document.createElement('div')
-    lightbox.setAttribute('id', 'lightbox')
-    document.body.appendChild(lightbox)
+    //const lightbox = document.createElement('div')
+   // lightbox.setAttribute('id', 'lightbox')
+    //document.body.appendChild(lightbox)
+
+    const lightbox = document.getElementById('lightbox');
 
     // pour chaque media de la page...
     const allMedia = document.querySelectorAll('.lightboxMedia')
@@ -50,10 +52,7 @@ class PhotographerUtils {
       media.addEventListener('click', e => {
 
         lightbox.classList.add('active')
-        if(document.querySelector('#lightbox').length > 1)
-        {
-          document.querySelector('#lightbox').remove()
-        }
+
 
         util.showMedia(index);
 
@@ -127,6 +126,7 @@ class PhotographerUtils {
     // création curseur pour fermer
     const closeCursor = document.createElement('span')
     closeCursor.setAttribute('id', 'close')
+    closeCursor.setAttribute('aria-label', 'Close dialog')
     closeCursor.addEventListener('click', e => {
       
       document.getElementById('lightbox').classList.remove('active')
@@ -137,26 +137,39 @@ class PhotographerUtils {
     // création flèche précédent
     const prev = document.createElement('a');
     prev.setAttribute('class', 'prev')
+    prev.setAttribute('aria-label', 'Previous image')
     prev.innerHTML = '&#10094;';
 
     prev.addEventListener('click', e => {
 
-      util.showMedia(index - 1)
-
+      if(index < allMedia.length)
+      {
         util.showMedia(0)
+      }else {
+        util.showMedia(index - 1)
+      }
+
     })
 
     // création flèche suivant
     const next = document.createElement('a');
     next.setAttribute('class', 'next')
+    next.setAttribute('aria-label', 'Next image')
     next.innerHTML = '&#10095;';
     next.addEventListener('click', e => {
+      //si on dépasse alors on revient à 0
 
-      util.showMedia(index +1)
+      if(index > allMedia.length)
+      {
+        util.showMedia(0)
+      }else{
 
+        util.showMedia(index + 1)
 
+      }
 
     })
+
 
     // insertion dans le dom
     document.getElementById('lightbox').appendChild(closeCursor)

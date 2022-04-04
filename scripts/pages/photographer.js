@@ -60,7 +60,7 @@ async function init () {
 
   // evenement qui detecte la demande de tri des médias
   document.getElementById('dropdown').addEventListener('click', function (e) {
-  document.getElementById('dropbtn').innerHTML = e.target.innerText + "<i class='fas fa-angle-up'></i>"
+  document.getElementById('sort-button-content').innerHTML = e.target.innerHTML
 
 
 
