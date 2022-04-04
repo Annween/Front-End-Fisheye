@@ -87,7 +87,9 @@ async function init () {
 
   })
 
+  //appel à la fonction de navigation avec les flèches du clavier
   photographerUtils.arrowKey()
+
 
 
 };

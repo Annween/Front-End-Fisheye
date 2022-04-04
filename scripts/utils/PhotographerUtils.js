@@ -182,10 +182,7 @@
 
   }
 
-  arrowKey(index) {
-
-    const utils = this;
-
+  arrowKey() {
     document.addEventListener('keydown', function (event) {
       event.preventDefault(); //prevent default arrow key behavior
       const allMedia = document.querySelectorAll('.lightboxMedia')
@@ -193,6 +190,7 @@
 
       switch (event.key) {
         case "ArrowLeft":
+          //simule un clique sur l'élément défini
          document.getElementById('previousMedia').click()
           break;
         case "ArrowRight":
