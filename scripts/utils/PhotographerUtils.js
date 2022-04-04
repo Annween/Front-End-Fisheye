@@ -138,6 +138,7 @@
 
     // création flèche précédent
     const prev = document.createElement('a');
+    prev.setAttribute('id', 'previousMedia')
     prev.setAttribute('class', 'prev')
     prev.setAttribute('aria-label', 'Previous image')
     prev.innerHTML = '&#10094;';
@@ -155,6 +156,7 @@
 
     // création flèche suivant
     const next = document.createElement('a');
+    next.setAttribute('id', 'nextMedia')
     next.setAttribute('class', 'next')
     next.setAttribute('aria-label', 'Next image')
     next.innerHTML = '&#10095;';
@@ -179,4 +181,27 @@
     document.getElementById('lightbox').appendChild(next)
 
   }
+
+  arrowKey(index) {
+
+    const utils = this;
+
+    document.addEventListener('keydown', function (event) {
+      event.preventDefault(); //prevent default arrow key behavior
+      const allMedia = document.querySelectorAll('.lightboxMedia')
+      const key = event.key; // "ArrowRight", "ArrowLeft"
+
+      switch (event.key) {
+        case "ArrowLeft":
+         document.getElementById('previousMedia').click()
+          break;
+        case "ArrowRight":
+          document.getElementById('nextMedia').click()
+          break;
+      }
+    });
+
+
+  }
+
 }

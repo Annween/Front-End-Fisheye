@@ -87,6 +87,8 @@ async function init () {
 
   })
 
+  photographerUtils.arrowKey()
+
 
 };
 
