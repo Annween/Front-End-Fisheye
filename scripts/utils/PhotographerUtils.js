@@ -45,6 +45,7 @@
     // pour chaque media de la page...
     const allMedia = document.querySelectorAll('.lightboxMedia')
     const util = this;
+    console.log(allMedia)
     
     allMedia.forEach(function (media, index){
 
@@ -74,6 +75,7 @@
     document.getElementById('lightbox').innerHTML = ""
 
     const allMedia = document.querySelectorAll('.lightboxMedia')
+
     
     const source = allMedia[index].src
 
@@ -142,9 +144,9 @@
 
     prev.addEventListener('click', e => {
 
-      if(index < allMedia.length)
+      if(index === 0)
       {
-        util.showMedia(0)
+        util.showMedia(allMedia.length - 1)
       }else {
         util.showMedia(index - 1)
       }
@@ -159,7 +161,7 @@
     next.addEventListener('click', e => {
       //si on dépasse alors on revient à 0
 
-      if(index > allMedia.length)
+      if(index === allMedia.length - 1)
       {
         util.showMedia(0)
       }else{
