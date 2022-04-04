@@ -10,10 +10,20 @@
 .photograph-header {
     background-color: #FAFAFA;
     padding: 60px;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
     align-items: center;
 }
+
+.photograph-header .mainInfos, .contact_button, .photographImg
+{
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 
 .photograph-header .names {
     margin-bottom: 15px;
@@ -157,12 +167,6 @@ form #message {
 {
     display: block;
 }
-
-
-
-
-
-
 
 .dropbtn {
     background-color: #901C1C;
@@ -309,9 +313,6 @@ form #message {
 {
     color: white;
 }
-
-
-
 
 
 #lightbox  video

@@ -61,6 +61,7 @@ function photographerFactory (data) {
 
     const profileImg = document.createElement('img')
     profileImg.setAttribute('src', `assets/photographers/${portrait}`)
+    profileImg.setAttribute('class', 'photographImg')
     profileImg.setAttribute('alt', 'profilePic')
 
     // création de mon info barre dans le footer
