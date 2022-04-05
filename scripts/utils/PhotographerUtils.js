@@ -29,7 +29,7 @@
   // ajoute 1 au coeur d'un média
   incrementLike (coeurIcon) {
     const compteur = coeurIcon.parentNode.querySelectorAll('.compteur') // depuis le parent je prend le compteur
-    compteur[0].innerHTML = parseInt(compteur[0].innerHTML) + 1
+    compteur[0].innerHTML = parseInt(compteur[0].innerHTML) + 1 + ' ';
   }
 
   // initialise la lightbox

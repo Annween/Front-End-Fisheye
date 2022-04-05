@@ -83,11 +83,7 @@ async function init () {
 
     if (e.target.classList.contains('lightboxMedia')) {
       photographerUtils.initLightbox()
-
     }
-
-
-
   })
   //permet de naviguer dans la lightbox avec les flèches du clavier
   document.addEventListener('keydown', function (event)

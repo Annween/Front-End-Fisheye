@@ -118,9 +118,9 @@ function photographerFactory (data) {
 
     const compteur = document.createElement('span')
     compteur.setAttribute('class', 'compteur')
-    compteur.textContent = likes
+    compteur.textContent = likes +  ' ';
     const heart = document.createElement('span')
-    //heart.setAttribute('aria-label', 'likes')
+    heart.setAttribute('aria-label', 'likes')
     heart.setAttribute('class', 'fas fa-heart incrementLike')
 
     // si le fichier contient l'extension JPG on l'affiche avec <img>
