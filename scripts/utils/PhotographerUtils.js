@@ -183,7 +183,7 @@
   }
 
   arrowKey() {
-    document.addEventListener('keydown', function (event) {
+    document.querySelector('.lightboxMedia').addEventListener('keydown', function (event) {
       event.preventDefault(); //prevent default arrow key behavior
       const allMedia = document.querySelectorAll('.lightboxMedia')
       const key = event.key; // "ArrowRight", "ArrowLeft"

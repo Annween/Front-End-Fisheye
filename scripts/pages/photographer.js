@@ -83,12 +83,13 @@ async function init () {
 
     if (e.target.classList.contains('lightboxMedia')) {
       photographerUtils.initLightbox()
+      photographerUtils.arrowKey()
     }
 
   })
 
   //appel à la fonction de navigation avec les flèches du clavier
-  photographerUtils.arrowKey()
+  
 
 
 
