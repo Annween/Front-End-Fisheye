@@ -7,6 +7,7 @@ function photographerFactory (data) {
   function getUserCardDOM () {
     const ahref = document.createElement('a')
     ahref.setAttribute('class', 'link')
+    ahref.setAttribute('aria-label', 'Show '+ name +' Profile')
     ahref.setAttribute('href', 'photographer.html?id=' + id)
     const article = document.createElement('article')
     const img = document.createElement('img')
