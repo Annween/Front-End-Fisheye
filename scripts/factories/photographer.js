@@ -36,13 +36,13 @@ function photographerFactory (data) {
   function getProfilePage () {
 
     const section = document.createElement('section')
-    const photograph_header = document.createElement('div')
+    const photograph_header = document.createElement('nav')
     photograph_header.setAttribute('class', 'photograph-header')
 
     const mainInfos = document.createElement('div')
     mainInfos.setAttribute('class', 'mainInfos')
 
-    const nomPrenom = document.createElement('h1')
+    const nomPrenom = document.createElement('h2')
     nomPrenom.setAttribute('class', 'names')
     nomPrenom.textContent = name
 
@@ -101,7 +101,7 @@ function photographerFactory (data) {
     // const section = document.createElement("section");
     // section.setAttribute('class', 'gallery');
 
-    const album = document.createElement('div')
+    const album = document.createElement('article')
     album.setAttribute('class', 'album')
 
     const caption = document.createElement('div')
@@ -128,7 +128,6 @@ function photographerFactory (data) {
       const img = document.createElement('img')
       img.setAttribute('class', 'lightboxMedia')
       img.setAttribute('src', jpg)
-      // img.setAttribute('onclick', 'openModal()');
       img.setAttribute('alt', title)
 
       album.appendChild(img)
@@ -144,7 +143,6 @@ function photographerFactory (data) {
       const videoPlayer = document.createElement('video')
       videoPlayer.setAttribute('controls', '')
       videoPlayer.setAttribute('class', 'lightboxMedia')
-      videoPlayer.setAttribute('alt', title)
       const source = document.createElement('source')
       source.setAttribute('src', mp4)
       source.setAttribute('type', 'video/mp4')

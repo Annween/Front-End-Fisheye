@@ -35,26 +35,23 @@
   // initialise la lightbox
   initLightbox () {
 
-    // création lightbox
-    //const lightbox = document.createElement('div')
-   // lightbox.setAttribute('id', 'lightbox')
-    //document.body.appendChild(lightbox)
-
+    // initialisation de la lightbox
     const lightbox = document.getElementById('lightbox');
 
-    // pour chaque media de la page...
+
     const allMedia = document.querySelectorAll('.lightboxMedia')
     const util = this;
-    console.log(allMedia)
-    
+
+    // pour chaque media de la page...
     allMedia.forEach(function (media, index){
 
       // je bind un click
       media.addEventListener('click', e => {
 
+        //je lui attribue une classe nommé active qui va permettre de l'afficher
         lightbox.classList.add('active')
 
-
+        //j'appelle ma fonction pour afficher les médias
         util.showMedia(index);
 
         
@@ -67,16 +64,14 @@
   // affiche le media à l'index demandé
   showMedia(index)
   {
-
+    //récupération de l'objet courant
     const util = this;
 
-    
     // reset la lightbox
     document.getElementById('lightbox').innerHTML = ""
 
     const allMedia = document.querySelectorAll('.lightboxMedia')
 
-    
     const source = allMedia[index].src
 
     // si le media est une image
@@ -182,7 +177,10 @@
 
   }
 
+  //permet de naviguer dans la lightbox avec les flèches du clavier
+
   arrowKey() {
+    //je bind un évènement sur les médias
     document.querySelector('.lightboxMedia').addEventListener('keydown', function (event) {
       event.preventDefault(); //prevent default arrow key behavior
       const allMedia = document.querySelectorAll('.lightboxMedia')

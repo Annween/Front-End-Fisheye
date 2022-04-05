@@ -88,10 +88,12 @@ async function init () {
 
   })
 
-  //appel à la fonction de navigation avec les flèches du clavier
-  
-
-
+  //permet d'afficher le contenu des champs du formulaire dans la console
+  document.getElementById('send').addEventListener('click', function (e)
+  {
+    e.preventDefault();
+    console.log(document.getElementById('firstname').value, document.getElementById('lastname').value, document.getElementById('email').value,  )
+  })
 
 };
 
