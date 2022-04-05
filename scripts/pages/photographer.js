@@ -1,4 +1,4 @@
-// get each photographer identify by their id
+// récupération de chaque photographe identifiés par leur id
 async function getPhotographer () {
   // je récupère l'id dans l'URL
   const id = window.location.search.split('id=')[1]
@@ -41,6 +41,8 @@ function displayMediaData (photographerMedias) {
   
 };
 
+
+//initialise toutes les fonctions
 async function init () {
   // Récupère les datas des photographes
   const photographerData = await getPhotographer()
@@ -56,21 +58,15 @@ async function init () {
   mediaArray = photographerUtils.sortMedia('popularite', mediaArray)
   displayMediaData(mediaArray)
 
-
-
   // evenement qui detecte la demande de tri des médias
   document.getElementById('dropdown').addEventListener('click', function (e) {
   document.getElementById('sort-button-content').innerHTML = e.target.innerHTML
-
-
-
     mediaArray = photographerUtils.sortMedia(e.target.id, mediaArray)
     displayMediaData(mediaArray)
   })
 
   // à chaque clic sur un coeur...
   document.addEventListener('click', function (e) {
-
     if (e.target.classList.contains('incrementLike')) {
       photographerUtils.incrementLike(e.target)
     }

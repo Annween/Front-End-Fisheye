@@ -161,7 +161,7 @@ function photographerFactory (data) {
     return (album)
   }
 
-  // insère le total de like d'un photographe dans la footer barre
+  // insère le total de like d'un photographe et se met à jour lorsque l'on like un média
   function getTotalLikes() {
 
     let totalLikes = 0
@@ -173,8 +173,10 @@ function photographerFactory (data) {
     });
 
     document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " " + "<span class='fas fa-heart'></span>";
+    //detecte le click sur le coeur d'un média
     document.addEventListener('click', function (e) {
       if (e.target.classList.contains('incrementLike')) {
+        //mise à jour
         document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
       }
 

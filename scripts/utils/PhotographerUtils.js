@@ -1,4 +1,5 @@
- class PhotographerUtils {
+ //Classe utilitaire contenant toutes les fonctionnalités additionelles du site
+class PhotographerUtils {
   // sort media switch criteria
   sortMedia (tri, mediaArray) {
     if (tri === 'titre') {
@@ -186,10 +187,13 @@
        const key = event.key; // "ArrowRight", "ArrowLeft"
 
        switch (event.key) {
+         //si flèche gauche pressée
          case "ArrowLeft":
            //simule un clique sur l'élément défini
            document.getElementById('previousMedia').click()
            break;
+
+           //si flèche droite pressée
          case "ArrowRight":
            document.getElementById('nextMedia').click()
            break;
