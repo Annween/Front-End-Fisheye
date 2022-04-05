@@ -83,9 +83,18 @@ async function init () {
 
     if (e.target.classList.contains('lightboxMedia')) {
       photographerUtils.initLightbox()
-      photographerUtils.arrowKey()
+
     }
 
+
+
+  })
+  //permet de naviguer dans la lightbox avec les flèches du clavier
+  document.addEventListener('keydown', function (event)
+  {
+    if (event.target.classList.contains('lightboxMedia')) {
+      photographerUtils.arrowKey(event)
+    }
   })
 
   //permet d'afficher le contenu des champs du formulaire dans la console

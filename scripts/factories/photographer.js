@@ -42,7 +42,7 @@ function photographerFactory (data) {
     const mainInfos = document.createElement('div')
     mainInfos.setAttribute('class', 'mainInfos')
 
-    const nomPrenom = document.createElement('h2')
+    const nomPrenom = document.createElement('h3')
     nomPrenom.setAttribute('class', 'names')
     nomPrenom.textContent = name
 
@@ -70,7 +70,7 @@ function photographerFactory (data) {
     const likesSpan = document.createElement('span')
     likesSpan.setAttribute('class', 'compteurLikeTotal')
 
-    const heart = document.createElement('i')
+    const heart = document.createElement('span')
     heart.setAttribute('aria-label', 'likes')
     heart.setAttribute('class', 'fas fa-heart')
     const priceDay = document.createElement('span')
@@ -119,7 +119,7 @@ function photographerFactory (data) {
     const compteur = document.createElement('span')
     compteur.setAttribute('class', 'compteur')
     compteur.textContent = likes
-    const heart = document.createElement('i')
+    const heart = document.createElement('span')
     //heart.setAttribute('aria-label', 'likes')
     heart.setAttribute('class', 'fas fa-heart incrementLike')
 
@@ -172,10 +172,10 @@ function photographerFactory (data) {
 
     });
 
-    document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " " + "<i class='fas fa-heart'></i>";
+    document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " " + "<span class='fas fa-heart'></span>";
     document.addEventListener('click', function (e) {
       if (e.target.classList.contains('incrementLike')) {
-        document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<i class='fas fa-heart'></i>"
+        document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
       }
 
 

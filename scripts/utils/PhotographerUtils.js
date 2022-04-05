@@ -179,25 +179,24 @@
 
   //permet de naviguer dans la lightbox avec les flèches du clavier
 
-  arrowKey() {
-    //je bind un évènement sur les médias
-    document.querySelector('.lightboxMedia').addEventListener('keydown', function (event) {
-      event.preventDefault(); //prevent default arrow key behavior
-      const allMedia = document.querySelectorAll('.lightboxMedia')
-      const key = event.key; // "ArrowRight", "ArrowLeft"
+   arrowKey(event) {
+     //je bind un évènement sur les médias
 
-      switch (event.key) {
-        case "ArrowLeft":
-          //simule un clique sur l'élément défini
-         document.getElementById('previousMedia').click()
-          break;
-        case "ArrowRight":
-          document.getElementById('nextMedia').click()
-          break;
-      }
-    });
+       event.preventDefault(); //prevent default arrow key behavior
+       const key = event.key; // "ArrowRight", "ArrowLeft"
+
+       switch (event.key) {
+         case "ArrowLeft":
+           //simule un clique sur l'élément défini
+           document.getElementById('previousMedia').click()
+           break;
+         case "ArrowRight":
+           document.getElementById('nextMedia').click()
+           break;
+       }
 
 
-  }
+
+   }
 
 }
