@@ -57,20 +57,15 @@ function setDOMInteraction(photographer) {
 
     document.querySelectorAll('.lightboxMedia')
         .forEach(function (media, index) {
-
             // je bind un click
             media.addEventListener('click', e => {
-
                 if (e.target.classList.contains('lightboxMedia')) {
                     //je lui attribue une classe nommé active qui va permettre de l'afficher
                     lightbox.classList.add('active')
-
                     //j'appelle ma fonction pour afficher les médias
                     photographer.showMedia(index);
-
                 }
             })
-
             // je bind un click
             media.addEventListener('keydown', e => {
                if(e.key === "Enter") {
@@ -78,17 +73,32 @@ function setDOMInteraction(photographer) {
                     lightbox.classList.add('active')
                     //call showMedia method to constuct lightbox
                     photographer.showMedia(index);
-                    document.addEventListener("keydown", (e) => {
-                        const elementList = 'button,div, a, span, [tabindex]:not([tabindex="-1"])';
-                        photographer.focusTrap(elementList, lightbox);
-                        if (e.key === 'ArrowLeft') photographer.prevMedia()
-                        if (e.key === 'ArrowRight') photographer.nextMedia()
-                        if (e.key === 'Escape') photographer.closeLightbox()
-                    })
-
                 }
             })
         });
+
+    if (document.getElementById('lightbox').classList.contains('active')) {
+
+        document.getElementById('main').removeAttribute('aria-hidden');
+        document.getElementById('main').setAttribute('aria-hidden', 'true')
+        lightbox.removeAttribute('aria-hidden');
+        lightbox.setAttribute('aria-hidden', 'false')
+
+    } else {
+        document.getElementById('main').removeAttribute('aria-hidden');
+        document.getElementById('main').setAttribute('aria-hidden', 'false')
+        lightbox.removeAttribute('aria-hidden');
+        lightbox.setAttribute('aria-hidden', 'true')
+    }
+
+    const elementList = 'span, a, [tabindex]:not([tabindex="-1"])';
+    photographer.focusTrap(elementList, document.getElementById('lightbox'));
+
+    document.getElementById('lightbox').addEventListener("keydown", (e) => {
+        if (e.key === 'ArrowLeft') photographer.prevMedia()
+        if (e.key === 'ArrowRight') photographer.nextMedia()
+        if (e.key === 'Escape') photographer.closeLightbox()
+    })
 
     document.getElementById('close').addEventListener('click', (e) => {
         photographer.closeLightbox();

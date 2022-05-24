@@ -73,23 +73,16 @@ class Photographer {
         const lightbox = document.getElementById('lightbox');
 
         if (document.querySelector('#container') !== '') {
-
             document.querySelector('#container').innerHTML = "";
         }
 
-
         if (this.allMedia[index].image) {
-
             const container = document.getElementById("container")
-
             const img = document.createElement('img')
             img.src = "assets/images/" + this.allMedia[index].image
-
             const caption = document.createElement('h4');
             caption.setAttribute('class', 'title')
-
             caption.innerHTML = this.allMedia[index].title
-
             lightbox.appendChild(container)
             container.appendChild(img)
             container.appendChild(caption)
@@ -97,20 +90,14 @@ class Photographer {
 
         } else if (this.allMedia[index].video) {
             const container = document.querySelector('#container')
-
             const videoTag = document.createElement('video')
             const source = document.createElement('source')
-
             videoTag.setAttribute('controls', '')
             source.src = "assets/images/" + this.allMedia[index].video
             source.setAttribute('type', 'video/mp4')
-
-            //const caption = document.querySelector('.title')
             const caption = document.createElement('h4');
             caption.setAttribute('class', 'title')
             caption.innerHTML = this.allMedia[index].title
-
-
             lightbox.appendChild(container)
             container.appendChild(videoTag)
             videoTag.appendChild(source)
@@ -118,54 +105,20 @@ class Photographer {
 
         }
 
-        if (lightbox.classList.contains('active')) {
-            //console.log('ok')
-            //lightbox.setAttribute('tabindex', -1)
-            //lightbox.focus();
-            document.getElementById('main').removeAttribute('aria-hidden');
-            document.getElementById('main').setAttribute('aria-hidden', 'true')
-
-
-            lightbox.removeAttribute('aria-hidden');
-            lightbox.setAttribute('aria-hidden', 'false')
-            //document.querySelector('#previousMedia').setAttribute('tabindex', '1');
-            //document.querySelector('#nextMedia').setAttribute('tabindex', '2');
-            //document.querySelector('#close').setAttribute('tabindex', '6');
-
-        } else {
-            document.getElementById('main').removeAttribute('aria-hidden');
-            document.getElementById('main').setAttribute('aria-hidden', 'false')
-
-            lightbox.removeAttribute('aria-hidden');
-            lightbox.setAttribute('aria-hidden', 'true')
-
-
-            //document.querySelector('#previousMedia').removeAttribute('tabindex')
-            //document.querySelector('#nextMedia').removeAttribute('tabindex')
-            //document.querySelector('#closeBtn').removeAttribute('tabindex')
-        }
-
-
-    }
-     isOdd(num) {
-        return num % 2;
     }
 
-//take two params
+//trap the focus inside an element
     focusTrap(focusableElements, modal)
     {
-
         const firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
         const focusableContent = modal.querySelectorAll(focusableElements);
         const lastFocusableElement = focusableContent[focusableContent.length - 1];
 
-        document.addEventListener('keydown', function(e) {
+        modal.addEventListener('keydown', function(e) {
             let isTabPressed = e.key === 'Tab';
-
             if (!isTabPressed) {
                 return;
             }
-
             if (e.shiftKey) {
                 if (document.activeElement === firstFocusableElement) {
                     lastFocusableElement.focus();
@@ -181,7 +134,6 @@ class Photographer {
 
         firstFocusableElement.focus();
     }
-
 }
 
 
