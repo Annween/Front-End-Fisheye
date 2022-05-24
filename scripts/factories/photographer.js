@@ -1,4 +1,7 @@
+let tabindex = 7;
+let tabIndexHeart = tabindex + 1;
 function photographerFactory (data) {
+
   const { id, name, city, country, tagline, price, portrait, image, likes, title, video } = data
 
   const picture = `assets/photographers/${portrait}`
@@ -36,29 +39,24 @@ function photographerFactory (data) {
   // affiche les infos du photographe
   function getProfilePage () {
 
-    const section = document.createElement('section')
-    const photograph_header = document.createElement('nav')
-    photograph_header.setAttribute('class', 'photograph-header')
+    const section = document.getElementById('photograph_header');
 
-    const mainInfos = document.createElement('div')
-    mainInfos.setAttribute('class', 'mainInfos')
+    const mainInfos = document.querySelector('.mainInfos');
 
-    const nomPrenom = document.createElement('h3')
-    nomPrenom.setAttribute('class', 'names')
+    const nomPrenom = document.querySelector('.names')
+
     nomPrenom.textContent = name
 
-    const location = document.createElement('div')
-    location.setAttribute('class', 'location')
-    const villePays = document.createElement('span')
+    const location = document.querySelector('.location')
+
+    const villePays = document.querySelector('span.city')
     villePays.textContent = city.concat(', ', country)
-    const bio = document.createElement('p')
+
+    const bio = document.querySelector('p.bio')
     bio.textContent = tagline
 
-    const contact_button = document.createElement('button')
-    contact_button.setAttribute('id', 'contact_button')
-    contact_button.setAttribute('class', 'contact_button')
-    contact_button.setAttribute('onclick', 'displayModal()')
-    contact_button.textContent = 'Contactez-moi'
+    const contact_button = document.getElementById('contact_button')
+
 
     const profileImg = document.createElement('img')
     profileImg.setAttribute('src', `assets/photographers/${portrait}`)
@@ -77,14 +75,15 @@ function photographerFactory (data) {
     const priceDay = document.createElement('span')
     priceDay.textContent = price + '€ /jour'
 
-    section.appendChild(photograph_header)
-    photograph_header.appendChild(mainInfos)
+
+    //section.appendChild(photograph_header)
+    section.appendChild(mainInfos)
     mainInfos.appendChild(nomPrenom)
     mainInfos.appendChild(location)
     location.appendChild(villePays)
     location.appendChild(bio)
-    photograph_header.appendChild(contact_button)
-    photograph_header.appendChild(profileImg)
+    section.appendChild(contact_button)
+    section.appendChild(profileImg)
 
     section.appendChild(price_likes)
     price_likes.appendChild(likesSpan)
@@ -123,13 +122,16 @@ function photographerFactory (data) {
     const heart = document.createElement('span')
     heart.setAttribute('aria-label', 'likes')
     heart.setAttribute('class', 'fas fa-heart incrementLike')
+    heart.setAttribute('tabindex', parseInt(tabIndexHeart++))
 
     // si le fichier contient l'extension JPG on l'affiche avec <img>
     if (jpg.split('.').pop() === 'jpg') {
       const img = document.createElement('img')
       img.setAttribute('class', 'lightboxMedia')
       img.setAttribute('src', jpg)
+      img.setAttribute('tabindex', parseInt(tabindex++))
       img.setAttribute('alt', title)
+
 
       album.appendChild(img)
       album.appendChild(caption)
@@ -144,6 +146,7 @@ function photographerFactory (data) {
       const videoPlayer = document.createElement('video')
       videoPlayer.setAttribute('controls', '')
       videoPlayer.setAttribute('class', 'lightboxMedia')
+      videoPlayer.setAttribute('tabindex', parseInt(tabindex++))
       const source = document.createElement('source')
       source.setAttribute('src', mp4)
       source.setAttribute('type', 'video/mp4')
@@ -162,6 +165,8 @@ function photographerFactory (data) {
     return (album)
   }
 
+
+
   // insère le total de like d'un photographe et se met à jour lorsque l'on like un média
   function getTotalLikes() {
 
@@ -173,20 +178,14 @@ function photographerFactory (data) {
 
     });
 
+
     document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " " + "<span class='fas fa-heart'></span>";
-    //detecte le click sur le coeur d'un média
-    document.addEventListener('click', function (e) {
-      if (e.target.classList.contains('incrementLike')) {
-        //mise à jour
-        document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
-      }
 
 
-    })
+
   }
-
-
 
 
   return { getUserCardDOM, getProfilePage, getMediaPage, getTotalLikes }
 }
+

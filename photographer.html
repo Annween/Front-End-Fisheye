@@ -2,78 +2,106 @@
 <html lang="fr">
 
 <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <title>Fisheye</title>
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header>
-       <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="logo" /></a>
-    </header>
+<!-- HEADER -->
+<header>
+    <a href="index.html" tabindex="1"><img src="assets/images/logo.png" class="logo" alt="logo"/></a>
+</header>
 
 
-    <!-- MAIN -->
-    <main id="main">
-        <section id="photographeInfos"></section>
-        <!-- Dropdown filter -->
-        <div class="sort">
-            <label><strong>Trier par : </strong></label>
+<!-- MAIN -->
+<main id="main" aria-hidden="false">
+    <section id="photograph_infos">
+        <nav id="photograph_header">
+            <div class="mainInfos">
+                <h3 class="names"></h3>
+                <div class="location">
+                    <span class="city"></span>
+                    <p class="bio"></p>
+                </div>
+            </div>
+
+            <button tabindex="2" id="contact_button" class="contact_button">Contactez-moi</button>
+        </nav>
+    </section>
+    <!-- Dropdown filter -->
+    <div class="sort">
+        <label id="sortBy"><strong>Trier par : </strong></label>
         <div id="dropdown" class="dropdown">
-            <button id="dropbtn" class="dropbtn" aria-haspopup="listbox" aria-expanded="true"><span id="sort-button-content">Popularité</span><span class="fas fa-angle-down"></span><span class="fas fa-angle-up"></span></button>
-            <div id="dropdown-content" class="dropdown-content">
-                <p role="listbox" id="popularite">Popularité</p>
-                <p role="listbox" id="date">Date</p>
-                <p role="listbox" id="titre">Titre</p>
+            <button id="dropbtn" tabindex="3" class="dropbtn" role="button" aria-haspopup="listbox"
+                    aria-owns="dropdown-content" aria-expanded="false">Popularité<span class="fas fa-angle-down"></span><span
+                    class="fas fa-angle-up"></span></button>
+            <div id="dropdown-content" class="dropdown-content" aria-expanded="false">
+                <p role="listbox" tabindex="4" aria-labelledby="sortBy" aria-expanded="false" aria-selected="true"
+                   aria-activedescendant="Popularite" id="popularite">Popularité</p>
+                <p role="listbox" tabindex="5" aria-labelledby="sortBy" aria-expanded="false" aria-selected="true"
+                   aria-activedescendant="Date" id="date">Date</p>
+                <p role="listbox" tabindex="6" aria-labelledby="sortBy" aria-expanded="false" aria-selected="true"
+                   aria-activedescendant="Titre" id="titre">Titre</p>
             </div>
         </div>
-        </div>
-
-        <section id="photographeMedias"></section>
-
-    </main>
-
-    <div id="lightbox">
-
     </div>
+
+    <section id="photograph_medias">
+    </section>
+
     <!-- FORM CONTACT -->
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog">
         <div class="modal">
             <header>
                 <h2>Contactez-moi</h2>
-                <img src="assets/icons/close.svg" onclick="closeModal()" alt="close Contact form"/>
+                <img id="closeBtn" src="assets/icons/close.svg" alt="close Contact form"/>
             </header>
             <form id="contact_form" name="contact_form" action="photographer.html" method="get">
                 <div>
                     <label for="firstname">Prénom</label>
-                    <input type="text" id="firstname" name="prenom" aria-label="First name" aria-labelledby="firstname"/>
+                    <input type="text" id="firstname" name="prenom" aria-label="First name"
+                           aria-labelledby="firstname"/>
                     <label for="lastname">Nom</label>
                     <input type="text" id="lastname" name="nom" aria-label="Last name" aria-labelledby="lastname"/>
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" aria-label="Email"  aria-labelledby="email" />
+                    <input type="email" id="email" name="email" aria-label="Email" aria-labelledby="email"/>
                     <label for="message">Votre message:</label>
-                    <input type="text" id="message" name="message" aria-label="Your message" aria-labelledby="message" />
+                    <textarea id="message" name="message" aria-label="Your message"
+                              aria-labelledby="message"></textarea>
                 </div>
                 <button id="send" class="send" aria-label="send" type="submit">Envoyer</button>
             </form>
         </div>
     </div>
+</main>
 
-    <script src="/scripts/factories/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/PhotographerUtils.js"></script>
-    <script src="/scripts/pages/photographer.js"></script>
-    <footer id="footer">
+<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" tabindex="-1">
+    <div id="container">
 
-    </footer>
-    
+    </div>
+    <span id="close" aria-label="Close dialog" tabindex="1">&times;</span>
+    <a id="previousMedia" class="prev" aria-label="Previous picture" tabindex="2">&#10094;</a>
+    <a id="nextMedia" class="next" aria-label="Next picture" tabindex="3">&#10095;</a>
+</div>
+
+
+<footer id="footer">
+</footer>
+
+<script src="/scripts/js/utils/api.js"></script>
+<script src="/scripts/js/utils/contactForm.js"></script>
+<script src="/scripts/factories/photographer.js"></script>
+<script src="/scripts/js/class/Photographer.js"></script>
+<script src="/scripts/js/pages/photographer.js"></script>
+
 </body>
-
 
 
 </html>

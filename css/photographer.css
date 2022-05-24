@@ -7,7 +7,7 @@
     display: none;
 }
 
-.photograph-header {
+#photograph_header {
     background-color: #FAFAFA;
     padding: 60px;
     display: grid;
@@ -16,7 +16,7 @@
     align-items: center;
 }
 
-.photograph-header .mainInfos, .contact_button, .photographImg
+#photograph_header .mainInfos, .contact_button, .photographImg
 {
     justify-self: center;
     display: flex;
@@ -25,18 +25,18 @@
 }
 
 
-.photograph-header .names {
+#photograph_header .names {
     margin-bottom: 15px;
     font-size: 40px;
     color: #D3573C;
 }
 
-.photograph-header .location span {
+#photograph_header.location span {
     color: #901C1C;
     font-size: 23px;
 }
 
-.photograph-header img {
+#photograph_header img {
     height: 200px;
     object-fit: cover;
     width: 200px;
@@ -160,6 +160,7 @@ form input {
 
 form #message {
     height: 244px;
+    width: 735px;
 }
 
 .sort {
@@ -171,16 +172,18 @@ form #message {
     display: none;
 }
 
+.sort .dropdown:hover .dropbtn .fa-angle-up
+{
+    display: block;
+}
+
 .sort .dropdown .dropbtn .fa-angle-up
 {
     display: none;
 }
 
 
-.sort .dropdown:hover .dropbtn .fa-angle-up
-{
-    display: block;
-}
+
 
 .dropbtn {
     background-color: #901C1C;
@@ -229,7 +232,7 @@ form #message {
     background-color: #901C1C;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content{
     display: block;
 }
 
@@ -237,47 +240,48 @@ form #message {
     background-color: #901C1C;
 }
 
-#photographeMedias {
+#photograph_medias {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
 }
 
-#photographeMedias .album {
+#photograph_medias .album {
     justify-self: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-#photographeMedias .album img {
+#photograph_medias .album img {
     object-fit: cover;
     width: 255px;
     height: 255px;
     cursor: pointer;
 }
 
-#photographeMedias .album video {
+#photograph_medias .album video {
     object-fit: cover;
     width: 255px;
     height: 255px;
     cursor: pointer;
 }
 
-#photographeMedias .album video .caption {
+#photograph_medias .album video .caption {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #901C1C;
 }
 
-#photographeMedias .album .caption {
+#photograph_medias .album .caption {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #901C1C;
 }
+
 
 #lightbox
 {
@@ -311,12 +315,12 @@ form #message {
     margin: auto;
 }
 
-#lightbox .container
+#lightbox #container
 {
     text-align: center;
 }
 
-#lightbox .container img
+#lightbox #container img
 {
     max-width: 100%;
     max-height: 500px;
