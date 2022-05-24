@@ -32,7 +32,6 @@ function setDOMInteraction(photographer) {
     // add event listener to detect sorting request
     document.getElementById('dropdown-content').addEventListener('click', function (e) {
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
-
         let sortedMedias = photographer.getSortedMedias(e.target.id)
         displayMediaData(sortedMedias)
     })
@@ -110,24 +109,13 @@ function setDOMInteraction(photographer) {
 
         });
 
-
-        const elementList = document.querySelectorAll('*');
-        photographer.focusTrap(elementList, lightbox);
-
         lightbox.addEventListener("keydown", (e) => {
+            const elementList = 'button,div, a, span, [tabindex]:not([tabindex="-1"])';
+            photographer.focusTrap(elementList, lightbox);
             if (e.key === 'ArrowLeft') photographer.prevMedia()
-        })
-
-        lightbox.addEventListener("keydown", (e) => {
             if (e.key === 'ArrowRight') photographer.nextMedia()
-        })
-
-        lightbox.addEventListener("keydown", (e) => {
             if (e.key === 'Escape') photographer.closeLightbox()
         })
-
-
-
 
 
     document.addEventListener('keydown', function (e) {
@@ -145,40 +133,21 @@ function setDOMInteraction(photographer) {
 
 
     document.getElementById('dropbtn').addEventListener('keydown', function (e) {
-        const enterIsPressed = e.key === "Enter"
-
-        if (!enterIsPressed) {
-            return;
-        } else {
-            //document.getElementById('dropbtn').innerHTML = ""
+        if(e.key === "Enter") {
             document.getElementById('dropdown-content').style.display = 'block'
-            document.getElementById('popularite').addEventListener('keydown', function (e) {
-                if (!enterIsPressed) {
-                    return;
-                } else {
-                    let sortedMedias = photographer.getSortedMedias('popularite')
-                    displayMediaData(sortedMedias)
-                }
+            const children = document.querySelectorAll('#dropdown-content p[role=listbox]');
+            children.forEach(child => {
+                child.addEventListener('keydown', function (e) {
+                    if (e.key === "Enter") {
+                        let sortedMedias = photographer.getSortedMedias(child.id)
+                        displayMediaData(sortedMedias)
+                    }
+                })
             })
-            document.getElementById('date').addEventListener('keydown', function (e) {
-                if (!enterIsPressed) {
-                    return;
-                } else {
-                    let sortedMedias = photographer.getSortedMedias('date')
-                    displayMediaData(sortedMedias)
-                }
-
-            })
-
-            document.getElementById('titre').addEventListener('keydown', function (e) {
-                if (!enterIsPressed) {
-                    return;
-                } else {
-                    let sortedMedias = photographer.getSortedMedias('titre')
-                    displayMediaData(sortedMedias)
-                }
-            })
-
+        }
+        if(e.key === "Escape")
+        {
+            document.getElementById('dropdown-content').style.display = 'none'
         }
     })
 
