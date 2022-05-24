@@ -9,19 +9,15 @@ function displayPhotographerData(photographer) {
 // display photographer media data dynamically for each photographer
 function displayMediaData(photographerMedias) {
     const photographersSection = document.getElementById('photograph_medias')
-
     photographersSection.innerHTML = ''
-
     photographerMedias.forEach((media) => {
         const profileModel = photographerFactory(media)
         const medias = profileModel.getMediaPage()
         photographersSection.appendChild(medias)
     })
-
     // calls factory function to loop all medias and display a total of like
     const totalLikeModel = photographerFactory(photographerMedias)
     totalLikeModel.getTotalLikes();
-
 };
 
 //set all interaction events
@@ -37,31 +33,27 @@ function setDOMInteraction(photographer) {
     })
 
     // foreach hearts' click..
+    //increase number of likes below media
     document.addEventListener('click', function (e) {
         if (e.target.classList.contains('incrementLike')) {
             photographer.incrementLike(e.target)
         }
     });
 
-    document.addEventListener('keydown', function (e) {
-        const enterIsPressed = e.key === "Enter"
-       if(enterIsPressed) {
-            if (e.target.classList.contains('incrementLike')) {
-                //mise à jour
-                document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
-            }
-        }
-    })
-
-
-    //detecte le click sur le coeur d'un média
+    //update the total amount of likes
     document.addEventListener('click', function (e) {
         if (e.target.classList.contains('incrementLike')) {
-            //mise à jour
             document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
         }
     })
 
+    document.addEventListener('keydown', function (e) {
+       if(e.key === "Enter") {
+            if (e.target.classList.contains('incrementLike')) {
+                document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
+            }
+        }
+    })
 
     document.querySelectorAll('.lightboxMedia')
         .forEach(function (media, index) {
@@ -81,57 +73,45 @@ function setDOMInteraction(photographer) {
 
             // je bind un click
             media.addEventListener('keydown', e => {
-                const enterIsPressed = e.key === "Enter"
-                if (!enterIsPressed) {
-                    return;
-                } else {
-                    //je lui attribue une classe nommé active qui va permettre de l'afficher
+               if(e.key === "Enter") {
+                    //show lightbox by adding active class
                     lightbox.classList.add('active')
-
-                    //j'appelle ma fonction pour afficher les médias
+                    //call showMedia method to constuct lightbox
                     photographer.showMedia(index);
-                    //document.addEventListener("keydown", (e) => {
-                    //    if (e.key === 'ArrowLeft') photographer.prevMedia()
-                    //})
-//
-                    //document.addEventListener("keydown", (e) => {
-                    //    if (e.key === 'ArrowRight') photographer.nextMedia()
-                    //})
-//
-                    //document.addEventListener("keydown", (e) => {
-                    //    if (e.key === 'Escape') photographer.closeLightbox()
-                    //})
-
+                    document.addEventListener("keydown", (e) => {
+                        const elementList = 'button,div, a, span, [tabindex]:not([tabindex="-1"])';
+                        photographer.focusTrap(elementList, lightbox);
+                        if (e.key === 'ArrowLeft') photographer.prevMedia()
+                        if (e.key === 'ArrowRight') photographer.nextMedia()
+                        if (e.key === 'Escape') photographer.closeLightbox()
+                    })
 
                 }
             })
-
-
         });
 
-        lightbox.addEventListener("keydown", (e) => {
-            const elementList = 'button,div, a, span, [tabindex]:not([tabindex="-1"])';
-            photographer.focusTrap(elementList, lightbox);
-            if (e.key === 'ArrowLeft') photographer.prevMedia()
-            if (e.key === 'ArrowRight') photographer.nextMedia()
-            if (e.key === 'Escape') photographer.closeLightbox()
-        })
+    document.getElementById('close').addEventListener('click', (e) => {
+        photographer.closeLightbox();
+    })
 
+    document.querySelector("#nextMedia").addEventListener("click", (e) => {
+        photographer.nextMedia()
+    })
+    document.querySelector("#previousMedia").addEventListener("click", (e) => {
 
+        photographer.prevMedia()
+    })
+
+    //increase number of likes below media on keydown
     document.addEventListener('keydown', function (e) {
-        const enterIsPressed = e.key === "Enter"
-        if (!enterIsPressed) {
-            return;
-        } else {
+        if( e.key === "Enter") {
             if (e.target.classList.contains('incrementLike')) {
-
                 photographer.incrementLike(e.target)
             }
         }
-
     })
 
-
+    //sort media switch criteria on keydown
     document.getElementById('dropbtn').addEventListener('keydown', function (e) {
         if(e.key === "Enter") {
             document.getElementById('dropdown-content').style.display = 'block'
@@ -150,19 +130,6 @@ function setDOMInteraction(photographer) {
             document.getElementById('dropdown-content').style.display = 'none'
         }
     })
-
-    document.getElementById('close').addEventListener('click', (e) => {
-        photographer.closeLightbox();
-    })
-
-    document.querySelector("#nextMedia").addEventListener("click", (e) => {
-        photographer.nextMedia()
-    })
-    document.querySelector("#previousMedia").addEventListener("click", (e) => {
-
-        photographer.prevMedia()
-    })
-
 }
 
 // return all info about photographer
