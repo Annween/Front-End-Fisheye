@@ -7,26 +7,40 @@ function displayPhotographerData(photographer) {
 };
 
 // display photographer media data dynamically for each photographer
-function displayMediaData(photographerMedias) {
+function displayMediaData(photographerMedias, photographer) {
     const photographersSection = document.getElementById('photograph_medias')
     photographersSection.innerHTML = ''
     photographerMedias.forEach((media) => {
-        const profileModel = photographerFactory(media)
+        const profileModel = mediaFactory(media)
         const medias = profileModel.getMediaPage()
+        // je bind un click
+        medias.querySelector('.lightboxMedia').addEventListener('click', e => {
+            //call showMedia method to constuct lightbox
+            console.log(photographer)
+            photographer.showMedia(this.openedMediaIndex);
+        })
+        // je bind
+        medias.querySelector('.lightboxMedia').addEventListener('keydown', e => {
+            if(e.key === "Enter") {
+                //call showMedia method to constuct lightbox
+                photographer.showMedia(this.openedMediaIndex);
+            }
+        })
         photographersSection.appendChild(medias)
     })
     // calls factory function to loop all medias and display a total of like
-    const totalLikeModel = photographerFactory(photographerMedias)
+    const totalLikeModel = mediaFactory(photographerMedias)
     totalLikeModel.getTotalLikes();
 };
 
 //set all interaction events
 function setDOMInteraction(photographer) {
-    let lightbox = document.querySelector('#lightbox');
+    console.log(document.getElementById('lightbox'))
+    //let lightbox = document.querySelector('#lightbox');
     const main = document.querySelector('main')
 
     // add event listener to detect sorting request
-    document.getElementById('dropdown-content').addEventListener('click', function (e) {
+    document.getElementById('dropdown-content').addEventListener('click',  (e) => {
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
         let sortedMedias = photographer.getSortedMedias(e.target.id)
         displayMediaData(sortedMedias)
@@ -34,20 +48,20 @@ function setDOMInteraction(photographer) {
 
     // foreach hearts' click..
     //increase number of likes below media
-    document.addEventListener('click', function (e) {
+    document.addEventListener('click',  (e) =>{
         if (e.target.classList.contains('incrementLike')) {
             photographer.incrementLike(e.target)
         }
     });
 
     //update the total amount of likes
-    document.addEventListener('click', function (e) {
+    document.addEventListener('click',  (e) => {
         if (e.target.classList.contains('incrementLike')) {
             document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
         }
     })
 
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown',  (e) => {
        if(e.key === "Enter") {
             if (e.target.classList.contains('incrementLike')) {
                 document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
@@ -55,27 +69,8 @@ function setDOMInteraction(photographer) {
         }
     })
 
-    document.querySelectorAll('.lightboxMedia')
-        .forEach(function (media, index) {
-            // je bind un click
-            media.addEventListener('click', e => {
-                if (e.target.classList.contains('lightboxMedia')) {
-                    //je lui attribue une classe nommé active qui va permettre de l'afficher
-                    lightbox.classList.add('active')
-                    //j'appelle ma fonction pour afficher les médias
-                    photographer.showMedia(index);
-                }
-            })
-            // je bind un click
-            media.addEventListener('keydown', e => {
-               if(e.key === "Enter") {
-                    //show lightbox by adding active class
-                    lightbox.classList.add('active')
-                    //call showMedia method to constuct lightbox
-                    photographer.showMedia(index);
-                }
-            })
-        });
+
+
 
     if (document.getElementById('lightbox').classList.contains('active')) {
 
@@ -94,7 +89,9 @@ function setDOMInteraction(photographer) {
     const elementList = 'span, a, [tabindex]:not([tabindex="-1"])';
     photographer.focusTrap(elementList, document.getElementById('lightbox'));
 
+
     document.getElementById('lightbox').addEventListener("keydown", (e) => {
+        console.log('ok')
         if (e.key === 'ArrowLeft') photographer.prevMedia()
         if (e.key === 'ArrowRight') photographer.nextMedia()
         if (e.key === 'Escape') photographer.closeLightbox()
@@ -113,7 +110,7 @@ function setDOMInteraction(photographer) {
     })
 
     //increase number of likes below media on keydown
-    document.addEventListener('keydown', function (e) {
+    document.addEventListener('keydown',  (e) => {
         if( e.key === "Enter") {
             if (e.target.classList.contains('incrementLike')) {
                 photographer.incrementLike(e.target)
@@ -122,23 +119,24 @@ function setDOMInteraction(photographer) {
     })
 
     //sort media switch criteria on keydown
-    document.getElementById('dropbtn').addEventListener('keydown', function (e) {
+    document.getElementById('dropbtn').addEventListener('keydown',  (e) => {
         if(e.key === "Enter") {
             document.getElementById('dropdown-content').style.display = 'block'
-            const children = document.querySelectorAll('#dropdown-content p[role=listbox]');
-            children.forEach(child => {
-                child.addEventListener('keydown', function (e) {
-                    if (e.key === "Enter") {
-                        let sortedMedias = photographer.getSortedMedias(child.id)
-                        displayMediaData(sortedMedias)
-                    }
-                })
-            })
         }
         if(e.key === "Escape")
         {
             document.getElementById('dropdown-content').style.display = 'none'
         }
+    })
+    const children = document.querySelectorAll('#dropdown-content p[role=listbox]');
+    children.forEach(child => {
+        child.addEventListener('keydown', function (e) {
+            if (e.key === "Enter") {
+                let sortedMedias = photographer.getSortedMedias(child.id)
+                displayMediaData(sortedMedias)
+                document.getElementById('dropdown-content').style.display = 'none'
+            }
+        })
     })
 }
 
@@ -157,7 +155,7 @@ async function loadPhotographer() {
     displayPhotographerData(photographer.getInfos())
     //set default sorting (popularity)
     let sortedMedias = photographer.getSortedMedias('popularite')
-    displayMediaData(sortedMedias)
+    displayMediaData(sortedMedias, photographer)
 
     return photographer
 
@@ -165,12 +163,8 @@ async function loadPhotographer() {
 
 //init all functions
 async function init() {
-
     const photographer = await loadPhotographer();
-
     setDOMInteraction(photographer);
-
-
 };
 
 (function () {

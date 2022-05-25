@@ -68,9 +68,9 @@ class Photographer {
 
     // affiche le media à l'index demandé
     showMedia(index) {
-
-        this.openedMediaIndex = index;
         const lightbox = document.getElementById('lightbox');
+        lightbox.classList.add('active')
+        this.openedMediaIndex = index;
 
         if (document.querySelector('#container') !== '') {
             document.querySelector('#container').innerHTML = "";
