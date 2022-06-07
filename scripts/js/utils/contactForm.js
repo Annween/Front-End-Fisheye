@@ -13,12 +13,11 @@ document.querySelector('#contact_button').addEventListener('click', function (e)
     modal.setAttribute('tabindex', -1)
     modal.removeAttribute('aria-hidden')
     modal.setAttribute('aria-hidden', 'false')
-    document.getElementById('closeBtn').focus()
+    //document.getElementById('closeBtn').focus()
 })
 
 document.querySelector('#contact_button').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
-        modal.focus();
         document.getElementById('closeBtn').focus()
         const main = document.getElementById('main')
         main.removeAttribute('aria-hidden');
@@ -28,6 +27,51 @@ document.querySelector('#contact_button').addEventListener('keydown', function (
         modal.removeAttribute('aria-hidden')
         modal.setAttribute('aria-hidden', 'false')
 
+
+        const focusableElements = 'input, button, img, [tabindex]:not([tabindex="-1"])';
+        const firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
+        const focusableContent = modal.querySelectorAll(focusableElements);
+        const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+        modal.addEventListener('keydown', function (e) {
+            let isTabPressed = e.key === 'Tab';
+            if (!isTabPressed) {
+                return;
+            }
+            if (e.shiftKey) {
+                if (document.activeElement === firstFocusableElement) {
+                    lastFocusableElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastFocusableElement) {
+                    firstFocusableElement.focus();
+                    e.preventDefault();
+                }
+            }
+        });
+
+        firstFocusableElement.focus();
+
+    }
+})
+
+
+document.querySelector(' #closeBtn').addEventListener('keydown', function (e) {
+
+    if(e.key === 'Enter')
+    {
+        modal.style.display = "none";
+    }
+})
+
+
+document.querySelector('#send').addEventListener('keydown', function (e) {
+
+    if(e.key === 'Enter')
+    {
+        e.preventDefault();
+        console.log(document.getElementById('firstname').value, document.getElementById('lastname').value, document.getElementById('email').value)
     }
 })
 

@@ -19,12 +19,17 @@ function displayMediaData(photographer, mediaArray) {
         medias.querySelector('.lightboxMedia').addEventListener('click', e => {
             //console.log(photographer.showMedia(this.openedMediaIndex))
             //call showMedia method to constuct lightbox
+
             photographer.showMedia(index);
         })
         // je bind
         medias.querySelector('.lightboxMedia').addEventListener('keydown', e => {
             if (e.key === "Enter") {
                 //call showMedia method to constuct lightbox
+                document.getElementById('main').removeAttribute('aria-hidden');
+                document.getElementById('main').setAttribute('aria-hidden', 'true')
+                document.getElementById('lightbox').removeAttribute('aria-hidden');
+                document.getElementById('lightbox').setAttribute('aria-hidden', 'false')
                 photographer.showMedia(index);
             }
         })
@@ -35,14 +40,13 @@ function displayMediaData(photographer, mediaArray) {
     totalLikeModel.getTotalLikes();
 };
 
+//creer une fonction pour aria hidden
+
+
 //set all interaction events
 function setDOMInteraction(photographer) {
 
 
-    const elementList = 'span, a, [tabindex]:not([tabindex="-1"])';
-    photographer.focusTrap(elementList, document.getElementById('lightbox'));
-
-    console.log(document.getElementById('lightbox').classList)
     // add event listener to detect sorting request
     document.getElementById('dropdown-content').addEventListener('click', (e) => {
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
@@ -74,25 +78,25 @@ function setDOMInteraction(photographer) {
     })
 
 
-    if (document.getElementById('lightbox').style.display !== 'none') {
-        document.getElementById('main').removeAttribute('aria-hidden');
-        document.getElementById('main').setAttribute('aria-hidden', 'true')
-        document.getElementById('lightbox').removeAttribute('aria-hidden');
-        document.getElementById('lightbox').setAttribute('aria-hidden', 'false')
-
-    } else {
-        document.getElementById('main').removeAttribute('aria-hidden');
-        document.getElementById('main').setAttribute('aria-hidden', 'false')
-        document.getElementById('lightbox').removeAttribute('aria-hidden');
-        document.getElementById('lightbox').setAttribute('aria-hidden', 'true')
-    }
-
-    document.getElementById('lightbox').addEventListener("keydown", (e) => {
-        console.log('ok')
+  document.getElementById('lightbox').addEventListener("keydown", (e) => {
         if (e.key === 'ArrowLeft') photographer.prevMedia()
         if (e.key === 'ArrowRight') photographer.nextMedia()
         if (e.key === 'Escape') photographer.closeLightbox()
+
     })
+
+    document.querySelector("#nextMedia").addEventListener("keydown", (e) => {
+        if (e.key === 'Enter')  photographer.nextMedia()
+    })
+
+    document.querySelector("#previousMedia").addEventListener("keydown", (e) => {
+        if (e.key === 'Enter')  photographer.prevMedia()
+    })
+
+    document.querySelector("#close").addEventListener("keydown", (e) => {
+        if (e.key === 'Enter')  photographer.closeLightbox()
+    })
+
 
     document.getElementById('close').addEventListener('click', (e) => {
         photographer.closeLightbox();
@@ -160,6 +164,7 @@ async function loadPhotographer() {
 async function init() {
     const photographer = await loadPhotographer();
     setDOMInteraction(photographer);
+
 };
 
 (function () {

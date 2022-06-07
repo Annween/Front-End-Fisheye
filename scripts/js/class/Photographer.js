@@ -60,14 +60,52 @@ class Photographer {
 
     closeLightbox() {
         document.getElementById('lightbox').classList.remove('active')
+        document.getElementById('main').removeAttribute('aria-hidden');
+        document.getElementById('main').setAttribute('aria-hidden', 'false')
+        document.getElementById('lightbox').removeAttribute('aria-hidden');
+        document.getElementById('lightbox').setAttribute('aria-hidden', 'true')
     }
+
+  /*  focusTrap(focusableElements, modal) {
+        const firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
+        const focusableContent = modal.querySelectorAll(focusableElements);
+        const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+        modal.addEventListener('keydown', function (e) {
+            console.log('ok');
+            let isTabPressed = e.key === 'Tab';
+            if (!isTabPressed) {
+                return;
+            }
+            if (e.shiftKey) {
+                if (document.activeElement === firstFocusableElement) {
+                    lastFocusableElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastFocusableElement) {
+                    firstFocusableElement.focus();
+                    e.preventDefault();
+                }
+            }
+        });
+
+        firstFocusableElement.focus();
+    } */
+
 
     // affiche le media à l'index demandé
     showMedia(index) {
         const lightbox = document.getElementById('lightbox');
         lightbox.classList.add('active')
+        document.getElementById('main').removeAttribute('aria-hidden');
+        document.getElementById('main').setAttribute('aria-hidden', 'true')
+        document.getElementById('lightbox').removeAttribute('aria-hidden');
+        document.getElementById('lightbox').setAttribute('aria-hidden', 'false')
+
         this.openedMediaIndex = index;
         //console.log(this.allMedia[])
+
 
         if (document.querySelector('#container') !== '') {
             document.querySelector('#container').innerHTML = "";
@@ -102,20 +140,13 @@ class Photographer {
 
         }
 
-    }
 
-//trap the focus inside an element
-    focusTrap(focusableElements, modal)
-    {
-        const firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
-        const focusableContent = modal.querySelectorAll(focusableElements);
+        const focusableElements = 'span, a, [tabindex]:not([tabindex="-1"])';
+        const firstFocusableElement = lightbox.querySelectorAll(focusableElements)[0];
+        const focusableContent = lightbox.querySelectorAll(focusableElements);
         const lastFocusableElement = focusableContent[focusableContent.length - 1];
 
-        console.log(firstFocusableElement)
-        console.log(focusableContent)
-        console.log(lastFocusableElement)
-
-        modal.addEventListener('keydown', function(e) {
+        lightbox.addEventListener('keydown', function (e) {
             let isTabPressed = e.key === 'Tab';
             if (!isTabPressed) {
                 return;
@@ -134,8 +165,21 @@ class Photographer {
         });
 
         firstFocusableElement.focus();
+
+      // lightbox.addEventListener("keydown", (e) => {
+
+      //     if (e.key === 'ArrowLeft') this.prevMedia()
+      //     if (e.key === 'ArrowRight') this.nextMedia()
+      //     if (e.key === 'Escape') this.closeLightbox()
+
+      // })
+
     }
 }
+
+
+//trap the focus inside an element
+
 
 
 
