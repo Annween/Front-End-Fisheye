@@ -1,9 +1,5 @@
 //Classe utilitaire contenant toutes les fonctionnalités additionelles du site
 class Photographer {
-
-    //let allMedia = [];
-    //let photographer = [];
-
     constructor(photographer, medias) {
 
         this.photographer = photographer
@@ -71,6 +67,7 @@ class Photographer {
         const lightbox = document.getElementById('lightbox');
         lightbox.classList.add('active')
         this.openedMediaIndex = index;
+        //console.log(this.allMedia[])
 
         if (document.querySelector('#container') !== '') {
             document.querySelector('#container').innerHTML = "";
@@ -113,6 +110,10 @@ class Photographer {
         const firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
         const focusableContent = modal.querySelectorAll(focusableElements);
         const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+        console.log(firstFocusableElement)
+        console.log(focusableContent)
+        console.log(lastFocusableElement)
 
         modal.addEventListener('keydown', function(e) {
             let isTabPressed = e.key === 'Tab';

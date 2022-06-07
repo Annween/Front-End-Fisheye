@@ -164,7 +164,12 @@ form #message {
 }
 
 .sort {
-    margin-top: 25px;
+    margin-top: 30px;
+}
+
+.sort #sortBy
+{
+    font-size: 18px;
 }
 
 .sort .dropdown:hover .dropbtn .fa-angle-down
@@ -188,14 +193,15 @@ form #message {
 .dropbtn {
     background-color: #901C1C;
     color: white;
-    padding: 16px;
-    font-size: 16px;
+    padding: 15px;
+    font-size: 18px;
     border: none;
     width: 159px;
     text-align: left;
     display: flex;
     justify-content: space-between;
     border-radius: 3px 3px 0 0;
+    font-family: "DM Sans", sans-serif;
 }
 
 .dropdown {
@@ -211,6 +217,7 @@ form #message {
     min-width: 160px;
     z-index: 1;
     border-radius: 0 0 3px 3px;
+    font-size: 18px;
 }
 
 .dropdown-content {

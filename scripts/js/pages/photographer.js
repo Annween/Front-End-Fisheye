@@ -7,62 +7,66 @@ function displayPhotographerData(photographer) {
 };
 
 // display photographer media data dynamically for each photographer
-function displayMediaData(photographerMedias, photographer) {
+function displayMediaData(photographer, mediaArray) {
     const photographersSection = document.getElementById('photograph_medias')
+    //const index = photographer.openedMediaIndex
     photographersSection.innerHTML = ''
-    photographerMedias.forEach((media) => {
+    //this.openedMediaIndex = index;
+    mediaArray.forEach((media, index) => {
         const profileModel = mediaFactory(media)
         const medias = profileModel.getMediaPage()
         // je bind un click
         medias.querySelector('.lightboxMedia').addEventListener('click', e => {
+            //console.log(photographer.showMedia(this.openedMediaIndex))
             //call showMedia method to constuct lightbox
-            console.log(photographer)
-            photographer.showMedia(this.openedMediaIndex);
+            photographer.showMedia(index);
         })
         // je bind
         medias.querySelector('.lightboxMedia').addEventListener('keydown', e => {
-            if(e.key === "Enter") {
+            if (e.key === "Enter") {
                 //call showMedia method to constuct lightbox
-                photographer.showMedia(this.openedMediaIndex);
+                photographer.showMedia(index);
             }
         })
         photographersSection.appendChild(medias)
     })
     // calls factory function to loop all medias and display a total of like
-    const totalLikeModel = mediaFactory(photographerMedias)
+    const totalLikeModel = mediaFactory(mediaArray)
     totalLikeModel.getTotalLikes();
 };
 
 //set all interaction events
 function setDOMInteraction(photographer) {
-    console.log(document.getElementById('lightbox'))
-    //let lightbox = document.querySelector('#lightbox');
-    const main = document.querySelector('main')
 
+
+    const elementList = 'span, a, [tabindex]:not([tabindex="-1"])';
+    photographer.focusTrap(elementList, document.getElementById('lightbox'));
+
+    console.log(document.getElementById('lightbox').classList)
     // add event listener to detect sorting request
-    document.getElementById('dropdown-content').addEventListener('click',  (e) => {
+    document.getElementById('dropdown-content').addEventListener('click', (e) => {
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
         let sortedMedias = photographer.getSortedMedias(e.target.id)
-        displayMediaData(sortedMedias)
+        displayMediaData(photographer,sortedMedias)
     })
 
     // foreach hearts' click..
     //increase number of likes below media
-    document.addEventListener('click',  (e) =>{
+    document.addEventListener('click', (e) => {
         if (e.target.classList.contains('incrementLike')) {
             photographer.incrementLike(e.target)
         }
     });
 
     //update the total amount of likes
-    document.addEventListener('click',  (e) => {
+    document.addEventListener('click', (e) => {
         if (e.target.classList.contains('incrementLike')) {
             document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
         }
     })
 
-    document.addEventListener('keydown',  (e) => {
-       if(e.key === "Enter") {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Enter") {
             if (e.target.classList.contains('incrementLike')) {
                 document.querySelector('.compteurLikeTotal').innerHTML = parseInt(document.querySelector('.compteurLikeTotal').innerHTML) + 1 + " " + "<span class='fas fa-heart'></span>"
             }
@@ -70,25 +74,18 @@ function setDOMInteraction(photographer) {
     })
 
 
-
-
-    if (document.getElementById('lightbox').classList.contains('active')) {
-
+    if (document.getElementById('lightbox').style.display !== 'none') {
         document.getElementById('main').removeAttribute('aria-hidden');
         document.getElementById('main').setAttribute('aria-hidden', 'true')
-        lightbox.removeAttribute('aria-hidden');
-        lightbox.setAttribute('aria-hidden', 'false')
+        document.getElementById('lightbox').removeAttribute('aria-hidden');
+        document.getElementById('lightbox').setAttribute('aria-hidden', 'false')
 
     } else {
         document.getElementById('main').removeAttribute('aria-hidden');
         document.getElementById('main').setAttribute('aria-hidden', 'false')
-        lightbox.removeAttribute('aria-hidden');
-        lightbox.setAttribute('aria-hidden', 'true')
+        document.getElementById('lightbox').removeAttribute('aria-hidden');
+        document.getElementById('lightbox').setAttribute('aria-hidden', 'true')
     }
-
-    const elementList = 'span, a, [tabindex]:not([tabindex="-1"])';
-    photographer.focusTrap(elementList, document.getElementById('lightbox'));
-
 
     document.getElementById('lightbox').addEventListener("keydown", (e) => {
         console.log('ok')
@@ -110,8 +107,8 @@ function setDOMInteraction(photographer) {
     })
 
     //increase number of likes below media on keydown
-    document.addEventListener('keydown',  (e) => {
-        if( e.key === "Enter") {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Enter") {
             if (e.target.classList.contains('incrementLike')) {
                 photographer.incrementLike(e.target)
             }
@@ -119,12 +116,11 @@ function setDOMInteraction(photographer) {
     })
 
     //sort media switch criteria on keydown
-    document.getElementById('dropbtn').addEventListener('keydown',  (e) => {
-        if(e.key === "Enter") {
+    document.getElementById('dropbtn').addEventListener('keydown', (e) => {
+        if (e.key === "Enter") {
             document.getElementById('dropdown-content').style.display = 'block'
         }
-        if(e.key === "Escape")
-        {
+        if (e.key === "Escape") {
             document.getElementById('dropdown-content').style.display = 'none'
         }
     })
@@ -133,16 +129,16 @@ function setDOMInteraction(photographer) {
         child.addEventListener('keydown', function (e) {
             if (e.key === "Enter") {
                 let sortedMedias = photographer.getSortedMedias(child.id)
-                displayMediaData(sortedMedias)
-                document.getElementById('dropdown-content').style.display = 'none'
+                displayMediaData(photographer, sortedMedias)
+                //document.getElementById('dropdown-content').style.display = 'none'
             }
         })
     })
 }
 
-// return all info about photographer
+
 async function loadPhotographer() {
-    //get id param
+
     const params = new URLSearchParams(window.location.search)
     const id = parseInt(params.get("id"));
 
@@ -155,13 +151,12 @@ async function loadPhotographer() {
     displayPhotographerData(photographer.getInfos())
     //set default sorting (popularity)
     let sortedMedias = photographer.getSortedMedias('popularite')
-    displayMediaData(sortedMedias, photographer)
+    displayMediaData(photographer, sortedMedias)
 
     return photographer
-
 }
 
-//init all functions
+
 async function init() {
     const photographer = await loadPhotographer();
     setDOMInteraction(photographer);
