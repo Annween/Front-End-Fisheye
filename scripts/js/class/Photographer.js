@@ -1,4 +1,4 @@
-//Classe utilitaire contenant toutes les fonctionnalités additionelles du site
+//Photographer class
 class Photographer {
     constructor(photographer, medias) {
 
@@ -66,85 +66,23 @@ class Photographer {
         document.getElementById('lightbox').setAttribute('aria-hidden', 'true')
     }
 
-  /*  focusTrap(focusableElements, modal) {
-        const firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
-        const focusableContent = modal.querySelectorAll(focusableElements);
-        const lastFocusableElement = focusableContent[focusableContent.length - 1];
-
-        modal.addEventListener('keydown', function (e) {
-            console.log('ok');
-            let isTabPressed = e.key === 'Tab';
-            if (!isTabPressed) {
-                return;
-            }
-            if (e.shiftKey) {
-                if (document.activeElement === firstFocusableElement) {
-                    lastFocusableElement.focus();
-                    e.preventDefault();
-                }
-            } else {
-                if (document.activeElement === lastFocusableElement) {
-                    firstFocusableElement.focus();
-                    e.preventDefault();
-                }
-            }
-        });
-
-        firstFocusableElement.focus();
-    } */
-
 
     // affiche le media à l'index demandé
     showMedia(index) {
+
         const lightbox = document.getElementById('lightbox');
         lightbox.classList.add('active')
-        document.getElementById('main').removeAttribute('aria-hidden');
-        document.getElementById('main').setAttribute('aria-hidden', 'true')
-        document.getElementById('lightbox').removeAttribute('aria-hidden');
-        document.getElementById('lightbox').setAttribute('aria-hidden', 'false')
-
-        this.openedMediaIndex = index;
-        //console.log(this.allMedia[])
-
-
-        if (document.querySelector('#container') !== '') {
-            document.querySelector('#container').innerHTML = "";
-        }
-
-        if (this.allMedia[index].image) {
-            const container = document.getElementById("container")
-            const img = document.createElement('img')
-            img.src = "assets/images/" + this.allMedia[index].image
-            const caption = document.createElement('h4');
-            caption.setAttribute('class', 'title')
-            caption.innerHTML = this.allMedia[index].title
-            lightbox.appendChild(container)
-            container.appendChild(img)
-            container.appendChild(caption)
-
-
-        } else if (this.allMedia[index].video) {
-            const container = document.querySelector('#container')
-            const videoTag = document.createElement('video')
-            const source = document.createElement('source')
-            videoTag.setAttribute('controls', '')
-            source.src = "assets/images/" + this.allMedia[index].video
-            source.setAttribute('type', 'video/mp4')
-            const caption = document.createElement('h4');
-            caption.setAttribute('class', 'title')
-            caption.innerHTML = this.allMedia[index].title
-            lightbox.appendChild(container)
-            container.appendChild(videoTag)
-            videoTag.appendChild(source)
-            container.appendChild(caption)
-
-        }
-
 
         const focusableElements = 'span, a, [tabindex]:not([tabindex="-1"])';
         const firstFocusableElement = lightbox.querySelectorAll(focusableElements)[0];
         const focusableContent = lightbox.querySelectorAll(focusableElements);
         const lastFocusableElement = focusableContent[focusableContent.length - 1];
+        lightbox.setAttribute('tabindex', -1)
+        document.getElementById('close').focus()
+        document.getElementById('main').removeAttribute('aria-hidden');
+        document.getElementById('main').setAttribute('aria-hidden', 'true')
+        lightbox.removeAttribute('aria-hidden');
+        lightbox.setAttribute('aria-hidden', 'false')
 
         lightbox.addEventListener('keydown', function (e) {
             let isTabPressed = e.key === 'Tab';
@@ -166,19 +104,44 @@ class Photographer {
 
         firstFocusableElement.focus();
 
-      // lightbox.addEventListener("keydown", (e) => {
+        this.openedMediaIndex = index;
+        //console.log(this.allMedia[])
 
-      //     if (e.key === 'ArrowLeft') this.prevMedia()
-      //     if (e.key === 'ArrowRight') this.nextMedia()
-      //     if (e.key === 'Escape') this.closeLightbox()
 
-      // })
+        if (document.querySelector('#container') !== '') {
+            document.querySelector('#container').innerHTML = "";
+        }
+
+        if (this.allMedia[index].image) {
+            const container = document.getElementById("container")
+            const img = document.createElement('img')
+            img.src = "assets/images/" + this.allMedia[index].image
+            const caption = document.createElement('h4');
+            caption.setAttribute('class', 'title')
+            caption.innerHTML = this.allMedia[index].title
+            lightbox.appendChild(container)
+            container.appendChild(img)
+            container.appendChild(caption)
+
+        } else if (this.allMedia[index].video) {
+            const container = document.querySelector('#container')
+            const videoTag = document.createElement('video')
+            const source = document.createElement('source')
+            videoTag.setAttribute('controls', '')
+            source.src = "assets/images/" + this.allMedia[index].video
+            source.setAttribute('type', 'video/mp4')
+            const caption = document.createElement('h4');
+            caption.setAttribute('class', 'title')
+            caption.innerHTML = this.allMedia[index].title
+            lightbox.appendChild(container)
+            container.appendChild(videoTag)
+            videoTag.appendChild(source)
+            container.appendChild(caption)
+        }
 
     }
 }
 
-
-//trap the focus inside an element
 
 
 

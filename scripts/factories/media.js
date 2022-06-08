@@ -132,9 +132,7 @@ function mediaFactory (data) {
         return (album)
     }
 
-
-
-    // insère le total de like d'un photographe et se met à jour lorsque l'on like un média
+    // insert total amount of likes in footer bar and upadte itself when media is liked
     function getTotalLikes() {
 
         let totalLikes = 0
@@ -149,7 +147,6 @@ function mediaFactory (data) {
 
 
     }
-
 
     return { getProfilePage, getMediaPage, getTotalLikes }
 }

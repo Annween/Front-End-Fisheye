@@ -19,17 +19,12 @@ function displayMediaData(photographer, mediaArray) {
         medias.querySelector('.lightboxMedia').addEventListener('click', e => {
             //console.log(photographer.showMedia(this.openedMediaIndex))
             //call showMedia method to constuct lightbox
-
             photographer.showMedia(index);
         })
         // je bind
         medias.querySelector('.lightboxMedia').addEventListener('keydown', e => {
             if (e.key === "Enter") {
                 //call showMedia method to constuct lightbox
-                document.getElementById('main').removeAttribute('aria-hidden');
-                document.getElementById('main').setAttribute('aria-hidden', 'true')
-                document.getElementById('lightbox').removeAttribute('aria-hidden');
-                document.getElementById('lightbox').setAttribute('aria-hidden', 'false')
                 photographer.showMedia(index);
             }
         })
@@ -41,6 +36,15 @@ function displayMediaData(photographer, mediaArray) {
 };
 
 //creer une fonction pour aria hidden
+function setAriaHiddenFalseLightbox()
+{
+    document.getElementById('main').removeAttribute('aria-hidden');
+    document.getElementById('main').setAttribute('aria-hidden', 'true')
+    document.getElementById('lightbox').removeAttribute('aria-hidden');
+    document.getElementById('lightbox').setAttribute('aria-hidden', 'false')
+    document.getElementById('lightbox').focus();
+
+}
 
 
 //set all interaction events

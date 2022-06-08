@@ -16,7 +16,7 @@ document.querySelector('#contact_button').addEventListener('click', function (e)
     //document.getElementById('closeBtn').focus()
 })
 
-document.querySelector('#contact_button').addEventListener('keydown', function (e) {
+document.querySelector('#contact_button').addEventListener('keydown',  (e) => {
     if (e.key === 'Enter') {
         document.getElementById('closeBtn').focus()
         const main = document.getElementById('main')
@@ -33,7 +33,7 @@ document.querySelector('#contact_button').addEventListener('keydown', function (
         const focusableContent = modal.querySelectorAll(focusableElements);
         const lastFocusableElement = focusableContent[focusableContent.length - 1];
 
-        modal.addEventListener('keydown', function (e) {
+        modal.addEventListener('keydown',  (e) => {
             let isTabPressed = e.key === 'Tab';
             if (!isTabPressed) {
                 return;
@@ -57,7 +57,7 @@ document.querySelector('#contact_button').addEventListener('keydown', function (
 })
 
 
-document.querySelector(' #closeBtn').addEventListener('keydown', function (e) {
+document.querySelector(' #closeBtn').addEventListener('keydown',  (e) => {
 
     if(e.key === 'Enter')
     {
@@ -66,7 +66,7 @@ document.querySelector(' #closeBtn').addEventListener('keydown', function (e) {
 })
 
 
-document.querySelector('#send').addEventListener('keydown', function (e) {
+document.querySelector('#send').addEventListener('keydown',  (e) =>{
 
     if(e.key === 'Enter')
     {
@@ -79,7 +79,7 @@ document.querySelector('#send').addEventListener('keydown', function (e) {
 //permet de fermer la modale
 
 
-document.getElementById('closeBtn').addEventListener('click', function (e) {
+document.getElementById('closeBtn').addEventListener('click',  (e) => {
     e.preventDefault();
     modal.style.display = "none";
 
@@ -95,7 +95,7 @@ document.getElementById('closeBtn').addEventListener('click', function (e) {
 })
 
 
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown',  (e) =>{
     if (modal.getAttribute('aria-hidden') === 'false' && e.key === 'Escape') {
         modal.style.display = "none";
     }
@@ -103,7 +103,7 @@ document.addEventListener('keydown', function (e) {
 
 
 //permet d'afficher le contenu des champs du formulaire dans la console
-document.getElementById('send').addEventListener('click', function (e) {
+document.getElementById('send').addEventListener('click',  (e) => {
     e.preventDefault();
     console.log(document.getElementById('firstname').value, document.getElementById('lastname').value, document.getElementById('email').value)
 })
