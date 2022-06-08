@@ -52,9 +52,9 @@ class Photographer {
     }
 
 
-    // ajoute 1 au coeur d'un média
+    // add 1 like 
     incrementLike(coeurIcon) {
-        const compteur = coeurIcon.parentNode.querySelectorAll('.compteur') // depuis le parent je prend le compteur
+        const compteur = coeurIcon.parentNode.querySelectorAll('.compteur')
         compteur[0].innerHTML = parseInt(compteur[0].innerHTML) + 1 + ' ';
     }
 
@@ -65,7 +65,7 @@ class Photographer {
         document.getElementById('lightbox').removeAttribute('aria-hidden');
         document.getElementById('lightbox').setAttribute('aria-hidden', 'true')
         document.querySelector('header').removeAttribute('aria-hidden');
-        document.querySelector('header').setAttribute('aria-hidden', 'false')
+        document.querySelector('header').setAttribute('aria-hidden', 'false ')
     }
 
 
