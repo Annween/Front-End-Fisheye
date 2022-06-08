@@ -49,8 +49,7 @@ function setAriaHiddenFalseLightbox()
 
 //set all interaction events
 function setDOMInteraction(photographer) {
-
-
+    
     // add event listener to detect sorting request
     document.getElementById('dropdown-content').addEventListener('click', (e) => {
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'

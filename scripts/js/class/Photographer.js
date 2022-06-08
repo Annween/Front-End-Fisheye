@@ -64,6 +64,8 @@ class Photographer {
         document.getElementById('main').setAttribute('aria-hidden', 'false')
         document.getElementById('lightbox').removeAttribute('aria-hidden');
         document.getElementById('lightbox').setAttribute('aria-hidden', 'true')
+        document.querySelector('header').removeAttribute('aria-hidden');
+        document.querySelector('header').setAttribute('aria-hidden', 'false')
     }
 
 
@@ -81,6 +83,8 @@ class Photographer {
         document.getElementById('close').focus()
         document.getElementById('main').removeAttribute('aria-hidden');
         document.getElementById('main').setAttribute('aria-hidden', 'true')
+        document.querySelector('header').removeAttribute('aria-hidden');
+        document.querySelector('header').setAttribute('aria-hidden', 'true')
         lightbox.removeAttribute('aria-hidden');
         lightbox.setAttribute('aria-hidden', 'false')
 

@@ -10,6 +10,7 @@ document.querySelector('#contact_button').addEventListener('click', function (e)
     main.removeAttribute('aria-hidden');
     main.setAttribute('aria-hidden', 'true')
 
+
     modal.setAttribute('tabindex', -1)
     modal.removeAttribute('aria-hidden')
     modal.setAttribute('aria-hidden', 'false')
@@ -23,9 +24,11 @@ document.querySelector('#contact_button').addEventListener('keydown',  (e) => {
         main.removeAttribute('aria-hidden');
         main.setAttribute('aria-hidden', 'true')
 
+
         modal.setAttribute('tabindex', -1)
         modal.removeAttribute('aria-hidden')
         modal.setAttribute('aria-hidden', 'false')
+
 
 
         const focusableElements = 'input, button, img, [tabindex]:not([tabindex="-1"])';
@@ -88,6 +91,7 @@ document.getElementById('closeBtn').addEventListener('click',  (e) => {
         main.removeAttribute('aria-hidden');
         main.setAttribute('aria-hidden', 'false')
         modal.setAttribute('tabindex',)
+
 
         modal.removeAttribute('aria-hidden')
         modal.setAttribute('aria-hidden', 'true')

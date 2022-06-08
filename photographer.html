@@ -15,7 +15,7 @@
 
 <body>
 <!-- HEADER -->
-<header>
+<header aria-hidden="false">
     <a href="index.html" tabindex="1"><img src="assets/images/logo.png" class="logo" alt="logo"/></a>
 </header>
 
@@ -56,7 +56,7 @@
     </section>
 
     <!-- FORM CONTACT -->
-    <div id="contact_modal" aria-hidden="true" role="dialog">
+    <div id="contact_modal" aria-hidden="true" role="dialog" >
         <div class="modal">
             <header>
                 <h2>Contactez-moi</h2>
@@ -81,7 +81,7 @@
     </div>
 </main>
 
-<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog">
+<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="Lightbox">
     <div id="container" tabindex="0"></div>
     <span id="close" aria-label="Close dialog" tabindex="1">&times;</span>
         <a id="previousMedia" class="prev" aria-label="Previous picture" tabindex="2">&#10094;</a>

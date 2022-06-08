@@ -134,18 +134,11 @@ function mediaFactory (data) {
 
     // insert total amount of likes in footer bar and upadte itself when media is liked
     function getTotalLikes() {
-
         let totalLikes = 0
-
         data.forEach((media) => {
-
             totalLikes += media.likes;
-
         });
-
         document.querySelector('.compteurLikeTotal').innerHTML = totalLikes + " " + "<span class='fas fa-heart'></span>";
-
-
     }
 
     return { getProfilePage, getMediaPage, getTotalLikes }
