@@ -1,7 +1,6 @@
 //Photographer class
 class Photographer {
     constructor(photographer, medias) {
-
         this.photographer = photographer
         this.allMedia = medias
         this.openedMediaIndex = 0

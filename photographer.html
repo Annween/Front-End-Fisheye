@@ -42,11 +42,11 @@
                     aria-owns="dropdown-content" aria-expanded="false">Popularité<span class="fas fa-angle-down"></span><span
                     class="fas fa-angle-up"></span></button>
             <div id="dropdown-content" class="dropdown-content" aria-expanded="false">
-                <p role="listbox" tabindex="4" aria-labelledby="sortBy" aria-expanded="false" aria-selected="true"
+                <p role="listbox" tabindex="4" aria-labelledby="popularite" aria-expanded="false" aria-selected="true"
                    aria-activedescendant="Popularite" id="popularite">Popularité</p>
-                <p role="listbox" tabindex="5" aria-labelledby="sortBy" aria-expanded="false" aria-selected="true"
+                <p role="listbox" tabindex="5" aria-labelledby="date" aria-expanded="false" aria-selected="true"
                    aria-activedescendant="Date" id="date">Date</p>
-                <p role="listbox" tabindex="6" aria-labelledby="sortBy" aria-expanded="false" aria-selected="true"
+                <p role="listbox" tabindex="6" aria-labelledby="titre" aria-expanded="false" aria-selected="true"
                    aria-activedescendant="Titre" id="titre">Titre</p>
             </div>
         </div>
@@ -81,11 +81,11 @@
     </div>
 </main>
 
-<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="Lightbox">
+<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Lightbox">
     <div id="container" tabindex="0"></div>
     <span id="close" aria-label="Close dialog" tabindex="1">&times;</span>
-        <a id="previousMedia" class="prev" aria-label="Previous picture" tabindex="2">&#10094;</a>
-    <a id="nextMedia" class="next" aria-label="Next picture" tabindex="3">&#10095;</a>
+        <a id="previousMedia" class="prev" aria-label="Previous picture" aria-labelledby="lightbox" tabindex="2">&#10094;</a>
+    <a id="nextMedia" class="next" aria-label="Next picture" aria-labelledby="lightbox" tabindex="3">&#10095;</a>
 </div>
 
 
