@@ -50,6 +50,9 @@ function setAriaHiddenFalseLightbox()
 //set all interaction events
 function setDOMInteraction(photographer) {
 
+    //set default tabIndex when lightbox is closed
+
+
     // add event listener to detect sorting request
     document.getElementById('dropdown-content').addEventListener('click', (e) => {
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
@@ -81,6 +84,8 @@ function setDOMInteraction(photographer) {
     })
 
 
+
+
   document.getElementById('lightbox').addEventListener("keydown", (e) => {
         if (e.key === 'ArrowLeft') photographer.prevMedia()
         if (e.key === 'ArrowRight') photographer.nextMedia()
@@ -97,11 +102,13 @@ function setDOMInteraction(photographer) {
 
     document.querySelector("#close").addEventListener("keydown", (e) => {
         if (e.key === 'Enter')  photographer.closeLightbox()
+
     })
 
 
     document.getElementById('close').addEventListener('click', (e) => {
         photographer.closeLightbox();
+
     })
 
     document.querySelector("#nextMedia").addEventListener("click", (e) => {
