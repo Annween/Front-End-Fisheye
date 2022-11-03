@@ -14,7 +14,7 @@ document.querySelector('#contact_button').addEventListener('click', function (e)
     modal.setAttribute('tabindex', -1)
     modal.removeAttribute('aria-hidden')
     modal.setAttribute('aria-hidden', 'false')
-    //document.getElementById('closeBtn').focus()
+    document.getElementById('closeBtn').focus()
 })
 
 document.querySelector('#contact_button').addEventListener('keydown',  (e) => {

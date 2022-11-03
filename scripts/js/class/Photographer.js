@@ -58,8 +58,8 @@ class Photographer {
     }
 
     closeLightbox() {
-        document.getElementById('dropbtn').tabIndex = 3;
-        document.getElementById('logo').tabIndex = 1;
+        //document.getElementById('dropbtn').tabIndex = 3;
+        //document.getElementById('logo').tabIndex = 1;
         document.getElementById('lightbox').classList.remove('active')
         document.getElementById('main').removeAttribute('aria-hidden');
         document.getElementById('main').setAttribute('aria-hidden', 'false')
@@ -81,8 +81,8 @@ class Photographer {
         const firstFocusableElement = lightbox.querySelectorAll(focusableElements)[0];
         const focusableContent = lightbox.querySelectorAll(focusableElements);
         const lastFocusableElement = focusableContent[focusableContent.length - 1];
-        document.getElementById('dropbtn').tabIndex = 99;
-        document.getElementById('logo').tabIndex = 99;
+        //document.getElementById('dropbtn').tabIndex = 99;
+        //document.getElementById('logo').tabIndex = 99;
         lightbox.setAttribute('tabindex', -1)
         document.getElementById('close').focus()
         document.getElementById('main').removeAttribute('aria-hidden');

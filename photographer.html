@@ -41,16 +41,18 @@
             <button id="dropbtn" tabindex="3" class="dropbtn" role="button" aria-haspopup="listbox"
                     aria-owns="dropdown-content" aria-expanded="true">Popularité<span class="fas fa-angle-down"></span><span
                     class="fas fa-angle-up"></span></button>
-            <div id="dropdown-content" class="dropdown-content" aria-expanded="false">
-                <p role="listbox" tabindex="4" aria-labelledby="popularite" aria-expanded="false" aria-selected="true"
-                   aria-activedescendant="Popularite" id="popularite">Popularité</p>
-                <p role="listbox" tabindex="5" aria-labelledby="date" aria-expanded="false" aria-selected="true"
-                   aria-activedescendant="Date" id="date">Date</p>
-                <p role="listbox" tabindex="6" aria-labelledby="titre" aria-expanded="false" aria-selected="true"
-                   aria-activedescendant="Titre" id="titre">Titre</p>
+            <div id="dropdown-content" class="dropdown-content" aria-expanded="true">
+                <p role="listbox" tabindex="4" aria-labelledby="popularite" aria-expanded="false"
+                   id="popularite">Popularité</p>
+                <p role="listbox" tabindex="5" aria-labelledby="date" aria-expanded="false"
+                    id="date">Date</p>
+                <p role="listbox" tabindex="6" aria-labelledby="titre" aria-expanded="false"
+                  id="titre">Titre</p>
             </div>
         </div>
     </div>
+
+
 
     <section id="photograph_medias">
     </section>
@@ -65,14 +67,14 @@
             <form id="contact_form" name="contact_form" action="photographer.html" method="get">
                 <div>
                     <label for="firstname">Prénom</label>
-                    <input type="text" id="firstname" name="prenom" aria-label="First name"
+                    <input type="text" id="firstname" name="prenom" aria-label="Prénom"
                            aria-labelledby="firstname"/>
                     <label for="lastname">Nom</label>
-                    <input type="text" id="lastname" name="nom" aria-label="Last name" aria-labelledby="lastname"/>
+                    <input type="text" id="lastname" name="nom" aria-label="Nom" aria-labelledby="lastname"/>
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" aria-label="Email" aria-labelledby="email"/>
                     <label for="message">Votre message:</label>
-                    <textarea id="message" name="message" aria-label="Your message"
+                    <textarea id="message" name="message" aria-label="Message"
                               aria-labelledby="message"></textarea>
                 </div>
                 <button id="send" class="send" aria-label="send" type="submit">Envoyer</button>

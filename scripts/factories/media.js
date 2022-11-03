@@ -29,6 +29,7 @@ function mediaFactory (data) {
         profileImg.setAttribute('src', `assets/photographers/${portrait}`)
         profileImg.setAttribute('class', 'photographImg')
         profileImg.setAttribute('alt', 'profilePic')
+        profileImg.ariaLabel = name;
 
         // création de mon info barre dans le footer
         const price_likes = document.createElement('div')
@@ -97,6 +98,7 @@ function mediaFactory (data) {
             img.setAttribute('class', 'lightboxMedia')
             img.setAttribute('src', jpg)
             img.setAttribute('tabindex', parseInt(tabindex++))
+            img.setAttribute('aria-label', title)
             img.setAttribute('alt', title)
 
 

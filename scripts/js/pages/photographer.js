@@ -55,6 +55,7 @@ function setDOMInteraction(photographer) {
 
     // add event listener to detect sorting request
     document.getElementById('dropdown-content').addEventListener('click', (e) => {
+
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
         let sortedMedias = photographer.getSortedMedias(e.target.id)
         displayMediaData(photographer,sortedMedias)
@@ -127,17 +128,25 @@ function setDOMInteraction(photographer) {
             }
         }
     })
-
+    const children = document.querySelectorAll('#dropdown-content p[role=listbox]');
     //sort media switch criteria on keydown
     document.getElementById('dropbtn').addEventListener('keydown', (e) => {
         if (e.key === "Enter") {
+            children.forEach(child => {
+                child.setAttribute('aria-expanded', 'true');
+                child.setAttribute('aria-selected', 'true');
+
+            })
+
+            document.getElementById('dropbtn').tabIndex = -1;
+            document.getElementById('dropbtn').ariaExpanded = true;
             document.getElementById('dropdown-content').style.display = 'block'
         }
         if (e.key === "Escape") {
             document.getElementById('dropdown-content').style.display = 'none'
         }
     })
-    const children = document.querySelectorAll('#dropdown-content p[role=listbox]');
+
     children.forEach(child => {
         child.addEventListener('keydown', function (e) {
             if (e.key === "Enter") {
