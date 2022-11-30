@@ -220,6 +220,10 @@ form #message {
     font-size: 18px;
 }
 
+.dropdown-content.show {
+    display: block;
+}
+
 .dropdown-content {
     padding-inline-start: 0px;
 }

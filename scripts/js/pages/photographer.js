@@ -50,9 +50,6 @@ function setAriaHiddenFalseLightbox()
 //set all interaction events
 function setDOMInteraction(photographer) {
 
-    //set default tabIndex when lightbox is closed
-
-
     // add event listener to detect sorting request
     document.getElementById('dropdown-content').addEventListener('click', (e) => {
 
@@ -64,6 +61,7 @@ function setDOMInteraction(photographer) {
     // foreach hearts' click..
     //increase number of likes below media
     document.addEventListener('click', (e) => {
+
         if (e.target.classList.contains('incrementLike')) {
             photographer.incrementLike(e.target)
         }
@@ -83,8 +81,6 @@ function setDOMInteraction(photographer) {
             }
         }
     })
-
-
 
 
   document.getElementById('lightbox').addEventListener("keydown", (e) => {
@@ -120,42 +116,70 @@ function setDOMInteraction(photographer) {
         photographer.prevMedia()
     })
 
-    //increase number of likes below media on keydown
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Enter") {
-            if (e.target.classList.contains('incrementLike')) {
-                photographer.incrementLike(e.target)
-            }
-        }
-    })
+
+
     const children = document.querySelectorAll('#dropdown-content p[role=listbox]');
     //sort media switch criteria on keydown
-    document.getElementById('dropbtn').addEventListener('keydown', (e) => {
-        if (e.key === "Enter") {
-            children.forEach(child => {
-                child.setAttribute('aria-expanded', 'true');
-                child.setAttribute('aria-selected', 'true');
+//    document.getElementById('sort').addEventListener('keydown', (e) => {
+        document.querySelector('#dropbtn').addEventListener('keydown', (e) => {
+            alert(e.key);
+//        if (e.key === "Shift" ) {
+        if (e.key === "Enter" ) {
+           //display dropdown-content
+//
+              document.getElementById('dropdown-content').classList.toggle('show');
 
-            })
+         // //display dropdown menu on keydown only with aria live
+         // document.getElementById('dropdown-content').setAttribute('aria-hidden', 'false')
+         // document.getElementById('dropdown-content').setAttribute('aria-live', 'polite')
+         // document.getElementById('dropdown-content').setAttribute('aria-atomic', 'true')
+         // document.getElementById('dropdown-content').setAttribute('aria-relevant', 'all')
+         // document.getElementById('dropdown-content').setAttribute('aria-busy', 'true')
+         // document.getElementById('dropdown-content').setAttribute('aria-activedescendant', 'dropdown-content')
+         // document.getElementById('dropdown').ariaExpanded = true;
+         // document.getElementById('dropdown').ariaSelected = true;
+         // //set focus on first element of dropdown menu
+         // children[0].focus();
 
-            document.getElementById('dropbtn').tabIndex = -1;
-            document.getElementById('dropbtn').ariaExpanded = true;
-            document.getElementById('dropdown-content').style.display = 'block'
-        }
-        if (e.key === "Escape") {
-            document.getElementById('dropdown-content').style.display = 'none'
-        }
-    })
+          // children.forEach(child => {
+          //     child.setAttribute('aria-expanded', 'true');
+          //     child.setAttribute('aria-selected', 'true');
+          // })
 
+
+
+           //document.getElementById('dropdown-content').style.display = 'block'
+       }
+       if (e.key === "Escape") {
+           //document.getElementById('dropdown-content').style.display = 'none'
+
+           children.forEach(child => {
+               child.setAttribute('aria-expanded', 'false');
+               child.setAttribute('aria-selected', 'false');
+           })
+       }
+   })
+/*
     children.forEach(child => {
         child.addEventListener('keydown', function (e) {
             if (e.key === "Enter") {
+                alert('ici');
                 let sortedMedias = photographer.getSortedMedias(child.id)
                 displayMediaData(photographer, sortedMedias)
                 //document.getElementById('dropdown-content').style.display = 'none'
             }
         })
     })
+*/
+    //increase number of likes below media on keydown
+/*    document.addEventListener('keydown', (e) => {
+        if (e.key === "Enter") {
+            alert('la');
+            if (e.target.classList.contains('incrementLike')) {
+                photographer.incrementLike(e.target)
+            }
+        }
+    })*/
 }
 
 
@@ -185,7 +209,11 @@ async function init() {
 
 };
 
-(function () {
-    init()
-})()
+document.addEventListener("DOMContentLoaded", function(){
+   init();
+});
+
+//(function () {
+//    init()
+//})()
 

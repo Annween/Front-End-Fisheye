@@ -35,18 +35,16 @@
         </nav>
     </section>
     <!-- Dropdown filter -->
-    <div class="sort">
+    <div class="sort" id="sort">
         <label id="sortBy"><strong>Trier par : </strong></label>
-        <div id="dropdown" class="dropdown">
-            <button id="dropbtn" tabindex="3" class="dropbtn" role="button" aria-haspopup="listbox"
-                    aria-owns="dropdown-content" aria-expanded="true">Popularité<span class="fas fa-angle-down"></span><span
-                    class="fas fa-angle-up"></span></button>
-            <div id="dropdown-content" class="dropdown-content" aria-expanded="true">
-                <p role="listbox" tabindex="4" aria-labelledby="popularite" aria-expanded="false"
+        <div id="dropdown" class="dropdown" role="list">
+            <button id="dropbtn" tabindex="3" class="dropbtn">Popularité</button>
+            <div id="dropdown-content" class="dropdown-content" aria-hidden="true">
+                <p role="listbox" tabindex="4" aria-labelledby="popularite"
                    id="popularite">Popularité</p>
-                <p role="listbox" tabindex="5" aria-labelledby="date" aria-expanded="false"
+                <p role="listbox" tabindex="5" aria-labelledby="date"
                     id="date">Date</p>
-                <p role="listbox" tabindex="6" aria-labelledby="titre" aria-expanded="false"
+                <p role="listbox" tabindex="6" aria-labelledby="titre"
                   id="titre">Titre</p>
             </div>
         </div>
