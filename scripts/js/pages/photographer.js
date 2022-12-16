@@ -36,8 +36,7 @@ function displayMediaData(photographer, mediaArray) {
 };
 
 //creer une fonction pour aria hidden
-function setAriaHiddenFalseLightbox()
-{
+function setAriaHiddenFalseLightbox() {
     document.getElementById('main').removeAttribute('aria-hidden');
     document.getElementById('main').setAttribute('aria-hidden', 'true')
     document.getElementById('lightbox').removeAttribute('aria-hidden');
@@ -55,7 +54,7 @@ function setDOMInteraction(photographer) {
 
         document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
         let sortedMedias = photographer.getSortedMedias(e.target.id)
-        displayMediaData(photographer,sortedMedias)
+        displayMediaData(photographer, sortedMedias)
     })
 
     // foreach hearts' click..
@@ -83,22 +82,22 @@ function setDOMInteraction(photographer) {
     })
 
 
-  document.getElementById('lightbox').addEventListener("keydown", (e) => {
+    document.getElementById('lightbox').addEventListener("keydown", (e) => {
         if (e.key === 'ArrowLeft') photographer.prevMedia()
         if (e.key === 'ArrowRight') photographer.nextMedia()
         if (e.key === 'Escape') photographer.closeLightbox()
     })
 
     document.querySelector("#nextMedia").addEventListener("keydown", (e) => {
-        if (e.key === 'Enter')  photographer.nextMedia()
+        if (e.key === 'Enter') photographer.nextMedia()
     })
 
     document.querySelector("#previousMedia").addEventListener("keydown", (e) => {
-        if (e.key === 'Enter')  photographer.prevMedia()
+        if (e.key === 'Enter') photographer.prevMedia()
     })
 
     document.querySelector("#close").addEventListener("keydown", (e) => {
-        if (e.key === 'Enter')  photographer.closeLightbox()
+        if (e.key === 'Enter') photographer.closeLightbox()
 
     })
 
@@ -117,69 +116,42 @@ function setDOMInteraction(photographer) {
     })
 
 
-
     const children = document.querySelectorAll('#dropdown-content p[role=listbox]');
-    //sort media switch criteria on keydown
-//    document.getElementById('sort').addEventListener('keydown', (e) => {
-        document.querySelector('#dropbtn').addEventListener('keydown', (e) => {
-            alert(e.key);
-//        if (e.key === "Shift" ) {
-        if (e.key === "Enter" ) {
-           //display dropdown-content
-//
-              document.getElementById('dropdown-content').classList.toggle('show');
-
-         // //display dropdown menu on keydown only with aria live
-         // document.getElementById('dropdown-content').setAttribute('aria-hidden', 'false')
-         // document.getElementById('dropdown-content').setAttribute('aria-live', 'polite')
-         // document.getElementById('dropdown-content').setAttribute('aria-atomic', 'true')
-         // document.getElementById('dropdown-content').setAttribute('aria-relevant', 'all')
-         // document.getElementById('dropdown-content').setAttribute('aria-busy', 'true')
-         // document.getElementById('dropdown-content').setAttribute('aria-activedescendant', 'dropdown-content')
-         // document.getElementById('dropdown').ariaExpanded = true;
-         // document.getElementById('dropdown').ariaSelected = true;
-         // //set focus on first element of dropdown menu
-         // children[0].focus();
-
-          // children.forEach(child => {
-          //     child.setAttribute('aria-expanded', 'true');
-          //     child.setAttribute('aria-selected', 'true');
-          // })
 
 
 
-           //document.getElementById('dropdown-content').style.display = 'block'
-       }
-       if (e.key === "Escape") {
-           //document.getElementById('dropdown-content').style.display = 'none'
+    document.getElementById('dropbtn').addEventListener('click', (e) => {
+            document.getElementById('dropdown-content').style.display = 'block';
 
-           children.forEach(child => {
-               child.setAttribute('aria-expanded', 'false');
-               child.setAttribute('aria-selected', 'false');
-           })
-       }
-   })
-/*
-    children.forEach(child => {
-        child.addEventListener('keydown', function (e) {
+    })
+
+
+    document.getElementById('sort').addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            document.getElementById('dropdown-content').style.display = 'none'
+
+        }
+    })
+
+        children.forEach(child => {
+            child.addEventListener('keydown', function (e) {
+                if (e.key === "Enter") {
+                    let sortedMedias = photographer.getSortedMedias(child.id)
+                    displayMediaData(photographer, sortedMedias)
+                    document.getElementById('dropbtn').innerHTML = e.target.innerHTML + '<span class="fas fa-angle-up"></span><span class="fas fa-angle-down"></span>'
+                    //document.getElementById('dropdown-content').style.display = 'none'
+                }
+            })
+        })
+
+    //increase number of likes below media on keydown
+       document.addEventListener('keydown', (e) => {
             if (e.key === "Enter") {
-                alert('ici');
-                let sortedMedias = photographer.getSortedMedias(child.id)
-                displayMediaData(photographer, sortedMedias)
-                //document.getElementById('dropdown-content').style.display = 'none'
+                if (e.target.classList.contains('incrementLike')) {
+                    photographer.incrementLike(e.target)
+                }
             }
         })
-    })
-*/
-    //increase number of likes below media on keydown
-/*    document.addEventListener('keydown', (e) => {
-        if (e.key === "Enter") {
-            alert('la');
-            if (e.target.classList.contains('incrementLike')) {
-                photographer.incrementLike(e.target)
-            }
-        }
-    })*/
 }
 
 
@@ -209,11 +181,8 @@ async function init() {
 
 };
 
-document.addEventListener("DOMContentLoaded", function(){
-   init();
-});
 
-//(function () {
-//    init()
-//})()
+(function () {
+    init()
+})()
 
